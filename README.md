@@ -1,6 +1,6 @@
 # s11-22-reactnative
 
-It's a project to NOCOUNTRY
+It's a project of NOCOUNTRY
 
 ## Table of Contents
 
@@ -21,7 +21,7 @@ yarn install
 
 ## Usage
 
-After run expo, and check your device to see the app
+After run expo, and check your device to execute the app.
 
 ### yarn
 
