@@ -31,4 +31,10 @@ yarn expo
 
 ## Contributing
 
+- [Diego Fernández](https://github.com/Diego-Fdez)
+- [Mariano Obligado](https://github.com/obli137)
+- [E. J. Ordonez](https://github.com/r4zu)
+
 ## License
+
+This project is not licensed and is available for use without any restrictions.
