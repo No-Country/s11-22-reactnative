@@ -1,11 +1,21 @@
+import { useState } from 'react'
 import { Link, useNavigation } from '@react-navigation/native'
-import { TextInput, Text, TouchableOpacity } from 'react-native'
+import { TextInput, Text, TouchableOpacity, Alert } from 'react-native'
 import normalize from 'react-native-normalize'
+
+import { supabase } from '../../../supabase/initSupabase'
 
 const LoginForm = () => {
   const navigation = useNavigation()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  function login() {
+  async function login() {
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+    if (error) return Alert.alert(error.message)
     navigation.navigate('HomeScreen')
   }
 
@@ -16,12 +26,16 @@ const LoginForm = () => {
         keyboardType="email-address"
         className="w-full h-11 rounded-lg bg-[#eee] px-3"
         style={{ marginTop: normalize(22) }}
+        value={email}
+        onChangeText={setEmail}
       />
       <TextInput
         placeholder="Password"
         secureTextEntry={true}
         className="w-full h-11 rounded-lg bg-[#eee] px-3"
         style={{ marginTop: normalize(22) }}
+        value={password}
+        onChangeText={setPassword}
       />
       <Link
         to="/LoginScreen"
