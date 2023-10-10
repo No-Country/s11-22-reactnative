@@ -1,8 +1,14 @@
-import { Link } from '@react-navigation/native'
+import { Link, useNavigation } from '@react-navigation/native'
 import { TextInput, Text, TouchableOpacity } from 'react-native'
 import normalize from 'react-native-normalize'
 
 const LoginForm = () => {
+  const navigation = useNavigation()
+
+  function login() {
+    navigation.navigate('HomeScreen')
+  }
+
   return (
     <>
       <TextInput
@@ -31,6 +37,7 @@ const LoginForm = () => {
       <TouchableOpacity
         style={{ marginTop: normalize(44) }}
         className="w-full h-11 rounded-lg bg-[#B4B4B4] flex items-center justify-center"
+        onPress={login}
       >
         <Text
           className="text-black font-normal leading-5 tracking-tight"
