@@ -14,6 +14,7 @@ const useAuth = () => {
   const addUserInfo = userStore((state) => state.addUserInfo)
   const user = userStore((state) => state.userInfo)
 
+  // If the user is logged in, redirect to the HomeScreen.
   useEffect(() => {
     if (user.token !== '') navigation.navigate('HomeScreen')
   }, [user])
