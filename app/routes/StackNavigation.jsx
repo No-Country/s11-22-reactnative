@@ -1,5 +1,11 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { LoginScreen, HomeScreen, SearchScreen, SignUpScreen } from '../screens'
+import {
+  LoginScreen,
+  HomeScreen,
+  SearchScreen,
+  SignUpScreen,
+  ProductDetailScreen,
+} from '../screens'
 
 const Stack = createNativeStackNavigator()
 
@@ -36,6 +42,13 @@ const StackNavigation = () => {
       <Stack.Screen
         name="SearchScreen"
         component={SearchScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="ProductDetailScreen"
+        component={ProductDetailScreen}
         options={{
           headerShown: false,
         }}
