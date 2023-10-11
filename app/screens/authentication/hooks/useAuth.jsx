@@ -6,15 +6,16 @@ import { userStore } from '../../../store'
 import { supabase } from '../../../supabase/initSupabase'
 import { loginAdapter } from '../adapters'
 
-const useLogin = () => {
+const useAuth = () => {
   const navigation = useNavigation()
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const addUserInfo = userStore((state) => state.addUserInfo)
 
   // Login function that calls the supabase auth signInWithPassword function.
   async function login() {
-    const { error, data } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     })
@@ -27,13 +28,36 @@ const useLogin = () => {
     navigation.navigate('HomeScreen')
   }
 
+  async function signup() {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+    })
+
+    if (error) return Alert.alert(error.message)
+
+    const { error: saveError } = await supabase
+      .from('clients')
+      .insert([
+        { name: name, email: email.toLowerCase(), user_id: data.user.id },
+      ])
+      .select()
+
+    if (saveError) return Alert.alert(saveError.message)
+
+    navigation.navigate('LoginScreen')
+  }
+
   return {
+    name,
+    setName,
     email,
     setEmail,
     password,
     setPassword,
     login,
+    signup,
   }
 }
 
-export default useLogin
+export default useAuth
