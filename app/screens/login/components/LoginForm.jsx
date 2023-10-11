@@ -1,23 +1,10 @@
-import { useState } from 'react'
-import { Link, useNavigation } from '@react-navigation/native'
-import { TextInput, Text, TouchableOpacity, Alert } from 'react-native'
+import { Link } from '@react-navigation/native'
+import { TextInput, Text, TouchableOpacity } from 'react-native'
 import normalize from 'react-native-normalize'
-
-import { supabase } from '../../../supabase/initSupabase'
+import { useLogin } from '../hooks'
 
 const LoginForm = () => {
-  const navigation = useNavigation()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
-  async function login() {
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    })
-    if (error) return Alert.alert(error.message)
-    navigation.navigate('HomeScreen')
-  }
+  const { email, setEmail, password, setPassword, login } = useLogin()
 
   return (
     <>
@@ -25,7 +12,7 @@ const LoginForm = () => {
         placeholder="Email"
         keyboardType="email-address"
         className="w-full h-11 rounded-lg bg-[#eee] px-3"
-        style={{ marginTop: normalize(22) }}
+        style={{ marginTop: normalize(22, 'height') }}
         value={email}
         onChangeText={setEmail}
       />
@@ -33,7 +20,7 @@ const LoginForm = () => {
         placeholder="Password"
         secureTextEntry={true}
         className="w-full h-11 rounded-lg bg-[#eee] px-3"
-        style={{ marginTop: normalize(22) }}
+        style={{ marginTop: normalize(22, 'height') }}
         value={password}
         onChangeText={setPassword}
       />
@@ -41,7 +28,7 @@ const LoginForm = () => {
         to="/LoginScreen"
         className="text-black font-light leading-5 tracking-tight"
         style={{
-          marginTop: normalize(11),
+          marginTop: normalize(11, 'height'),
           fontSize: normalize(14),
           textAlign: 'right',
         }}
@@ -49,8 +36,8 @@ const LoginForm = () => {
         Forgot password?
       </Link>
       <TouchableOpacity
-        style={{ marginTop: normalize(44) }}
-        className="w-full h-11 rounded-lg bg-[#B4B4B4] flex items-center justify-center"
+        style={{ marginTop: normalize(44, 'height'), height: normalize(44) }}
+        className="w-full rounded-lg bg-[#B4B4B4] flex items-center justify-center"
         onPress={login}
       >
         <Text
