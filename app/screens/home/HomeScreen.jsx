@@ -3,6 +3,7 @@ import normalize from 'react-native-normalize'
 import Svg, { Path } from 'react-native-svg'
 import { SearchBox } from '../../components'
 import { Cards, Categories } from './components'
+import { userStore } from '../../store'
 
 const ITEMS = [
   {
@@ -26,6 +27,8 @@ const ITEMS = [
 ]
 
 const HomeScreen = () => {
+  const user = userStore((state) => state.userInfo)
+
   return (
     <SafeAreaView className="flex-1 bg-white items-center">
       <View
