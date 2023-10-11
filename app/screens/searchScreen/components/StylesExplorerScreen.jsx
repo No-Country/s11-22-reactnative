@@ -1,8 +1,10 @@
-import { View, Text, FlatList, Image } from 'react-native'
-import { Link } from '@react-navigation/native'
+import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native'
+import { Link, useNavigation } from '@react-navigation/native'
 import normalize from 'react-native-normalize'
 
 const StylesExplorerScreen = ({ items, spacing }) => {
+  const navigation = useNavigation()
+
   return (
     <>
       <View
@@ -33,19 +35,25 @@ const StylesExplorerScreen = ({ items, spacing }) => {
           data={items}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          renderItem={({ index }) => (
-            <Image
-              source={{
-                uri: 'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
-              }}
-              className="object-cover rounded-lg"
-              style={{
-                height: normalize(155),
-                width: normalize(126),
-                marginLeft: index === 0 ? spacing : 0,
-                marginRight: normalize(22, 'width'),
-              }}
-            />
+          renderItem={({ index, item }) => (
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('ProductDetailScreen', { itemId: item.id })
+              }
+            >
+              <Image
+                source={{
+                  uri: 'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
+                }}
+                className="object-cover rounded-lg"
+                style={{
+                  height: normalize(155),
+                  width: normalize(126),
+                  marginLeft: index === 0 ? spacing : 0,
+                  marginRight: normalize(22, 'width'),
+                }}
+              />
+            </TouchableOpacity>
           )}
           keyExtractor={(item) => item.id.toString()}
         />
@@ -71,19 +79,25 @@ const StylesExplorerScreen = ({ items, spacing }) => {
           data={items}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          renderItem={({ index }) => (
-            <Image
-              source={{
-                uri: 'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
-              }}
-              className="object-cover rounded-lg"
-              style={{
-                height: normalize(155),
-                width: normalize(126),
-                marginLeft: index === 0 ? spacing : 0,
-                marginRight: normalize(22, 'width'),
-              }}
-            />
+          renderItem={({ index, item }) => (
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('ProductDetailScreen', { itemId: item.id })
+              }
+            >
+              <Image
+                source={{
+                  uri: 'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
+                }}
+                className="object-cover rounded-lg"
+                style={{
+                  height: normalize(155),
+                  width: normalize(126),
+                  marginLeft: index === 0 ? spacing : 0,
+                  marginRight: normalize(22, 'width'),
+                }}
+              />
+            </TouchableOpacity>
           )}
           keyExtractor={(item) => item.id.toString()}
         />
