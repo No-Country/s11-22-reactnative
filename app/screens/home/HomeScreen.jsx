@@ -1,7 +1,7 @@
-import { View, Text, SafeAreaView, Image } from 'react-native'
+import { View, Text, SafeAreaView, Image, TouchableOpacity } from 'react-native'
 import normalize from 'react-native-normalize'
 import Svg, { Path } from 'react-native-svg'
-import { SearchBox } from '../../components'
+import { useNavigation } from '@react-navigation/native'
 import { Cards, Categories } from './components'
 import { userStore } from '../../store'
 
@@ -28,17 +28,29 @@ const ITEMS = [
 
 const HomeScreen = () => {
   const user = userStore((state) => state.userInfo)
+  const navigation = useNavigation()
 
   return (
     <SafeAreaView className="flex-1 bg-white items-center">
       <View
         className="w-full flex-row justify-between items-center"
         style={{
-          marginTop: normalize(44),
-          paddingHorizontal: normalize(22),
+          marginTop: normalize(44, 'height'),
+          paddingHorizontal: normalize(22, 'width'),
         }}
       >
-        <SearchBox width={278} />
+        <TouchableOpacity
+          className="pl-3 h-11 rounded-lg bg-[#d9d9d9] flex items-start justify-center"
+          style={{ width: normalize(278) }}
+          onPress={() => navigation.navigate('SearchScreen')}
+        >
+          <Text
+            className="font-light text-black leading-5 tracking-tight"
+            style={{ fontSize: normalize(16) }}
+          >
+            Search
+          </Text>
+        </TouchableOpacity>
         <Svg
           width="44"
           height="44"
@@ -55,8 +67,8 @@ const HomeScreen = () => {
       <View
         className="w-full"
         style={{
-          paddingHorizontal: normalize(22),
-          marginTop: normalize(44),
+          paddingHorizontal: normalize(22, 'width'),
+          marginTop: normalize(44, 'height'),
         }}
       >
         <Image
@@ -69,16 +81,22 @@ const HomeScreen = () => {
           }}
         />
       </View>
-      <View className="w-full" style={{ marginTop: normalize(44) }}>
+      <View className="w-full" style={{ marginTop: normalize(44, 'height') }}>
         <Categories ITEMS={ITEMS} />
       </View>
       <View
         className="w-full items-center flex-1"
-        style={{ marginTop: normalize(21), paddingHorizontal: normalize(22) }}
+        style={{
+          marginTop: normalize(21, 'height'),
+          paddingHorizontal: normalize(22, 'width'),
+        }}
       >
         <Text
           className="text-black font-light leading-5 tracking-tight"
-          style={{ fontSize: normalize(16), marginBottom: normalize(33) }}
+          style={{
+            fontSize: normalize(16),
+            marginBottom: normalize(33, 'height'),
+          }}
         >
           Product categories
         </Text>

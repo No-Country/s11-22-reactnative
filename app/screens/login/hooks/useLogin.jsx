@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { Alert } from 'react-native'
 
@@ -11,6 +11,11 @@ const useLogin = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const addUserInfo = userStore((state) => state.addUserInfo)
+  const user = userStore((state) => state.userInfo)
+
+  useEffect(() => {
+    if (user.token !== '') navigation.navigate('HomeScreen')
+  }, [user])
 
   // Login function that calls the supabase auth signInWithPassword function.
   async function login() {
