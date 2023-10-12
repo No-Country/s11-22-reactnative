@@ -18,9 +18,8 @@ const CheckOTPScreen = () => {
   const [four, setFour] = useState('')
   const [five, setFive] = useState('')
   const [six, setSix] = useState('')
-  const [token, setToken] = useState('')
 
-  const { checkOTP } = useAuth()
+  const { setToken, checkOTP } = useAuth()
 
   useEffect(() => {
     setToken(one + two + three + four + five + six)
@@ -30,9 +29,7 @@ const CheckOTPScreen = () => {
     <View className="flex-1">
       <View className={height <= 690 ? 'h-40' : 'h-80'}>
         <Image
-          source={{
-            uri: 'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
-          }}
+          source={require('../../../assets/Sign_up.png')}
           className={`w-full ${height <= 690 ? 'h-60' : 'h-96'} object-cover`}
         />
       </View>
@@ -42,40 +39,52 @@ const CheckOTPScreen = () => {
 
         <View className="flex-row mb-5">
           <TextInput
-            className="w-12 h-12 bg-gray-200 rounded-lg p-4 my-10"
+            maxLength={1}
+            className="w-12 h-12 bg-gray-200 rounded-lg p-4 my-10 items-center justify-center font-semibold"
             value={one}
             onChangeText={setOne}
+            autoFocus
           />
           <TextInput
-            className="w-12 h-12 bg-gray-200 rounded-lg p-4 my-10 mx-5"
+            maxLength={1}
+            className="w-12 h-12 bg-gray-200 rounded-lg p-4 my-10 mx-5 items-center justify-center font-semibold"
             value={two}
             onChangeText={setTwo}
+            autoFocus
           />
           <TextInput
-            className="w-12 h-12 bg-gray-200 rounded-lg p-4 my-10"
+            maxLength={1}
+            className="w-12 h-12 bg-gray-200 rounded-lg p-4 my-10 items-center justify-center font-semibold"
             value={three}
             onChangeText={setThree}
+            autoFocus
           />
           <TextInput
-            className="w-12 h-12 bg-gray-200 rounded-lg p-4 my-10 mx-5"
+            maxLength={1}
+            className="w-12 h-12 bg-gray-200 rounded-lg p-4 my-10 mx-5 items-center justify-center font-semibold"
             value={four}
             onChangeText={setFour}
+            autoFocus
           />
           <TextInput
-            className="w-12 h-12 bg-gray-200 rounded-lg p-4 my-10"
+            maxLength={1}
+            className="w-12 h-12 bg-gray-200 rounded-lg p-4 my-10 items-center justify-center font-semibold"
             value={five}
             onChangeText={setFive}
+            autoFocus
           />
           <TextInput
-            className="w-12 h-12 bg-gray-200 rounded-lg p-4 my-10 ml-5"
+            maxLength={1}
+            className="w-12 h-12 bg-gray-200 rounded-lg p-4 my-10 ml-5 items-center justify-center font-semibold"
             value={six}
             onChangeText={setSix}
+            autoFocus
           />
         </View>
 
         <TouchableOpacity
           className="w-full rounded-lg bg-gray-400 flex items-center justify-center py-2"
-          onPress={() => checkOTP(token)}
+          onPress={checkOTP}
         >
           <Text className="text-2xl">Check OTP</Text>
         </TouchableOpacity>

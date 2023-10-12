@@ -11,6 +11,7 @@ const useAuth = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [token, setToken] = useState('')
   const addUserInfo = userStore((state) => state.addUserInfo)
   const removeUser = userStore((state) => state.removeUserInfo)
   const user = userStore((state) => state.userInfo)
@@ -25,6 +26,22 @@ const useAuth = () => {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
+    })
+
+    if (error) return Alert.alert(error.message)
+
+    // Adapt data to store it in the store.
+    const adaptedUserData = loginAdapter(data)
+    addUserInfo(adaptedUserData)
+    navigation.navigate('HomeScreen')
+
+    setEmail('')
+    setPassword('')
+  }
+
+  async function loginOAuth(provider) {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider,
     })
 
     if (error) return Alert.alert(error.message)
@@ -80,7 +97,7 @@ const useAuth = () => {
     navigation.navigate('CheckOTPScreen')
   }
 
-  async function checkOTP(token) {
+  async function checkOTP() {
     const { error } = await supabase.auth.verifyOtp({
       email,
       token,
@@ -102,6 +119,7 @@ const useAuth = () => {
     password,
     setPassword,
     login,
+    loginOAuth,
     signup,
     signOut,
     forgotPassword,

@@ -15,9 +15,7 @@ const SignUpScreen = () => {
     <View className="flex-1">
       <View className={height <= 690 ? 'h-40' : 'h-80'}>
         <Image
-          source={{
-            uri: 'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
-          }}
+          source={require('../../../assets/Sign_up.png')}
           className={`w-full ${height <= 690 ? 'h-60' : 'h-96'} object-cover`}
         />
       </View>
