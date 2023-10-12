@@ -1,46 +1,16 @@
 import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native'
 import normalize from 'react-native-normalize'
 import { Ionicons } from '@expo/vector-icons'
-
-const DATA = [
-  {
-    id: 1,
-    productName: 'Product 1',
-    productType: 'product Type',
-    productPrice: '$100 USD',
-    productImage:
-      'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
-  },
-  {
-    id: 2,
-    productName: 'Product 1',
-    productType: 'product Type',
-    productPrice: '$100 USD',
-    productImage:
-      'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
-  },
-  {
-    id: 3,
-    productName: 'Product 1',
-    productType: 'product Type',
-    productPrice: '$100 USD',
-    productImage:
-      'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
-  },
-  {
-    id: 4,
-    productName: 'Product 1',
-    productType: 'product Type',
-    productPrice: '$100 USD',
-    productImage:
-      'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
-  },
-]
+import { cartStore } from '../../../store'
 
 const CartItems = () => {
+  const products = cartStore((state) => state.cart.products)
+  const addToCart = cartStore((state) => state.addToCart)
+  const removeProduct = cartStore((state) => state.removeProductFromCart)
+
   return (
     <View className="w-full" style={{ marginTop: normalize(31, 'height') }}>
-      {DATA?.map((item) => (
+      {products?.map((item) => (
         <View
           className="flex flex-row w-full items-start justify-start gap-5"
           style={{
@@ -65,16 +35,16 @@ const CartItems = () => {
             <View className="flex flex-row w-full items-center justify-between">
               <Text>{item?.productPrice}</Text>
               <View className="flex flex-row items-center justify-center gap-3">
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => removeProduct(item?.id)}>
                   <Ionicons name="remove-outline" size={24} color="black" />
                 </TouchableOpacity>
                 <Text
                   style={{ fontSize: normalize(16) }}
                   className="text-black font-light leading-[1.31vh] tracking-tight"
                 >
-                  3
+                  {item?.productQuantity}
                 </Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => addToCart(item)}>
                   <Ionicons name="md-add-outline" size={24} color="black" />
                 </TouchableOpacity>
               </View>

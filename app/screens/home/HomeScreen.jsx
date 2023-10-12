@@ -91,7 +91,7 @@ const HomeScreen = () => {
         >
           Product categories
         </Text>
-        <Cards ITEMS={ITEMS} />
+        <Cards />
       </View>
     </SafeAreaView>
   )

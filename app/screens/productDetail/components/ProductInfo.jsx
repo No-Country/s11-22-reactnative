@@ -21,7 +21,7 @@ const COLORS = [
   },
 ]
 
-const ProductInfo = ({ itemId }) => {
+const ProductInfo = ({ product }) => {
   return (
     <>
       <View className="flex flex-row w-full items-center justify-between">
@@ -29,7 +29,7 @@ const ProductInfo = ({ itemId }) => {
           style={{ fontSize: normalize(20) }}
           className="text-black font-medium leading-[1.31vh] tracking-tight"
         >
-          Product name {itemId}
+          {product?.productName}
         </Text>
         <View className="flex flex-row items-center justify-center gap-2">
           <TouchableOpacity>
@@ -53,7 +53,7 @@ const ProductInfo = ({ itemId }) => {
           marginTop: normalize(11, 'height'),
         }}
       >
-        Price
+        {product?.productPrice}
       </Text>
       <View
         className="flex flex-row w-full items-center justify-start gap-6"

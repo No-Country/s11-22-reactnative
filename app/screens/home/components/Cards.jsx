@@ -1,8 +1,9 @@
 import { FlatList, Image, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import normalize from 'react-native-normalize'
+import ITEMS from '../../../utils/fakeData'
 
-const Cards = ({ ITEMS }) => {
+const Cards = () => {
   const navigation = useNavigation()
 
   return (

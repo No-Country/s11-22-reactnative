@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import {
   View,
   Text,
@@ -9,15 +10,27 @@ import {
 import normalize from 'react-native-normalize'
 import { Ionicons } from '@expo/vector-icons'
 import ProductInfo from './components/ProductInfo'
+import { cartStore } from '../../store'
+import DATA from '../../utils/fakeData'
 
 const ProductDetailScreen = ({ route, navigation }) => {
   const SCREEN_HEIGHT = Dimensions.get('window').height
+  const SCREEN_WIDTH = Dimensions.get('window').width
+  const SPACING = (SCREEN_WIDTH * 0.12) / 2
   const { itemId } = route.params
+  const [product, setProduct] = useState({})
+  const addProduct = cartStore((state) => state.addToCart)
+  const emptyCart = cartStore((state) => state.emptyCart)
+
+  useEffect(() => {
+    const product = DATA.find((product) => product.id === itemId)
+    setProduct(product)
+  }, [itemId])
 
   return (
     <SafeAreaView
       className="flex-1 bg-white w-full"
-      style={{ paddingHorizontal: normalize(22, 'width') }}
+      style={{ paddingHorizontal: SPACING }}
     >
       <View
         className="relative self-center w-full"
@@ -45,7 +58,7 @@ const ProductDetailScreen = ({ route, navigation }) => {
         className="w-full flex flex-col"
         style={{ marginTop: normalize(22, 'height') }}
       >
-        <ProductInfo itemId={itemId} />
+        <ProductInfo product={product} />
         <TouchableOpacity
           className="w-full h-11 rounded-lg bg-[#d9d9d9] flex items-center justify-center"
           style={{ marginTop: normalize(44, 'height') }}
@@ -53,6 +66,7 @@ const ProductDetailScreen = ({ route, navigation }) => {
           <Text
             className="text-black font-light leading-[1.31vh] tracking-tight"
             style={{ fontSize: normalize(20) }}
+            onPress={() => addProduct(product)}
           >
             Add to cart
           </Text>
@@ -60,6 +74,7 @@ const ProductDetailScreen = ({ route, navigation }) => {
         <TouchableOpacity
           className="w-full h-11 rounded-lg bg-[#d9d9d9] flex items-center justify-center"
           style={{ marginTop: normalize(22, 'height') }}
+          onPress={() => emptyCart()}
         >
           <Text
             className="text-black font-light leading-[1.31vh] tracking-tight"

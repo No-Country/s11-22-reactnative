@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   ScrollView,
+  Dimensions,
 } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import normalize from 'react-native-normalize'
@@ -12,11 +13,13 @@ import { CartItems } from './components'
 
 const CartScreen = () => {
   const navigation = useNavigation()
+  const SCREEN_WIDTH = Dimensions.get('window').width
+  const SPACING = (SCREEN_WIDTH * 0.12) / 2
 
   return (
     <SafeAreaView
       className="flex-1 bg-white w-full"
-      style={{ paddingHorizontal: normalize(22, 'width') }}
+      style={{ paddingHorizontal: SPACING }}
     >
       <TouchableOpacity
         onPress={() => navigation.goBack()}
