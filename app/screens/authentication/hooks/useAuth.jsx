@@ -16,7 +16,7 @@ const useAuth = () => {
 
   // If the user is logged in, redirect to the HomeScreen.
   useEffect(() => {
-    if (user.token !== '') navigation.navigate('HomeScreen')
+    if (user?.accessToken) navigation.navigate('HomeScreen')
   }, [user])
 
   // Login function that calls the supabase auth signInWithPassword function.
