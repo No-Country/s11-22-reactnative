@@ -30,7 +30,7 @@ const ProductDetailScreen = ({ route, navigation }) => {
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Ionicons name="ios-arrow-back-outline" size={30} color="black" />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('CartScreen')}>
             <Ionicons name="ios-cart-outline" size={30} color="black" />
           </TouchableOpacity>
         </View>
@@ -65,7 +65,7 @@ const ProductDetailScreen = ({ route, navigation }) => {
             className="text-black font-light leading-[1.31vh] tracking-tight"
             style={{ fontSize: normalize(20) }}
           >
-            Add to cart
+            Try in your place
           </Text>
         </TouchableOpacity>
       </View>
