@@ -5,6 +5,7 @@ import {
   SearchScreen,
   SignUpScreen,
   ProductDetailScreen,
+  CartScreen,
 } from '../screens'
 
 const Stack = createNativeStackNavigator()
@@ -49,6 +50,13 @@ const StackNavigation = () => {
       <Stack.Screen
         name="ProductDetailScreen"
         component={ProductDetailScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="CartScreen"
+        component={CartScreen}
         options={{
           headerShown: false,
         }}
