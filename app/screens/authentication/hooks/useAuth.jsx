@@ -12,12 +12,13 @@ const useAuth = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const addUserInfo = userStore((state) => state.addUserInfo)
+  const removeUser = userStore((state) => state.removeUserInfo)
   const user = userStore((state) => state.userInfo)
 
   // If the user is logged in, redirect to the HomeScreen.
-  useEffect(() => {
-    if (user.token !== '') navigation.navigate('HomeScreen')
-  }, [user])
+  // useEffect(() => {
+  //   if (user.token !== '') navigation.navigate('HomeScreen')
+  // }, [user])
 
   // Login function that calls the supabase auth signInWithPassword function.
   async function login() {
@@ -32,6 +33,9 @@ const useAuth = () => {
     const adaptedUserData = loginAdapter(data)
     addUserInfo(adaptedUserData)
     navigation.navigate('HomeScreen')
+
+    setEmail('')
+    setPassword('')
   }
 
   async function signup() {
@@ -52,6 +56,42 @@ const useAuth = () => {
     if (saveError) return Alert.alert(saveError.message)
 
     navigation.navigate('LoginScreen')
+
+    setName('')
+    setEmail('')
+    setPassword('')
+  }
+
+  async function signOut() {
+    const { error } = await supabase.auth.signOut()
+
+    if (error) return Alert.alert(error.message)
+
+    removeUser()
+
+    navigation.navigate('LoginScreen')
+  }
+
+  async function forgotPassword() {
+    const { error } = await supabase.auth.resetPasswordForEmail(email)
+
+    if (error) return Alert.alert(error.message)
+
+    navigation.navigate('CheckOTPScreen')
+  }
+
+  async function checkOTP(token) {
+    const { error } = await supabase.auth.verifyOtp({
+      email,
+      token,
+      type: 'email',
+    })
+
+    if (error) return Alert.alert(error.message)
+
+    setEmail('')
+
+    navigation.navigate('HomeScreen')
   }
 
   return {
@@ -63,6 +103,9 @@ const useAuth = () => {
     setPassword,
     login,
     signup,
+    signOut,
+    forgotPassword,
+    checkOTP,
   }
 }
 
