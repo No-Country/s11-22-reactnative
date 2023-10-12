@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { Cards, Categories } from './components'
 import { userStore } from '../../store'
+import { useAuth } from '../../screens/authentication/hooks'
 
 const ITEMS = [
   {
@@ -30,6 +31,8 @@ const HomeScreen = () => {
   const user = userStore((state) => state.userInfo)
   const navigation = useNavigation()
 
+  const { signOut } = useAuth()
+
   return (
     <SafeAreaView className="flex-1 bg-white items-center">
       <View
@@ -53,6 +56,10 @@ const HomeScreen = () => {
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('CartScreen')}>
           <Ionicons name="ios-cart-outline" size={38} color="black" />
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={signOut}>
+          <Ionicons name="log-out-outline" size={38} color="black" />
         </TouchableOpacity>
       </View>
       <View

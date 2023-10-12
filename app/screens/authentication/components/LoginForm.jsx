@@ -23,9 +23,9 @@ const LoginForm = () => {
         onChangeText={setPassword}
       />
 
-      <View className="w-full mb-8">
-        <Link to="/">
-          <Text className="text-lg text-right">Forgot password?</Text>
+      <View className="w-full mb-8 items-end">
+        <Link to="/ForgotPasswordScreen">
+          <Text className="text-lg">Forgot password?</Text>
         </Link>
       </View>
 

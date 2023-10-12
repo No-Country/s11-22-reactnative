@@ -1,16 +1,22 @@
-import { Text, Image, KeyboardAvoidingView, View } from 'react-native'
+import {
+  Text,
+  Image,
+  KeyboardAvoidingView,
+  View,
+  Dimensions,
+} from 'react-native'
 import { Link } from '@react-navigation/native'
 import { SignInOptions, SignUpForm } from './components'
 
 const SignUpScreen = () => {
+  const height = Dimensions.get('window').height
+
   return (
     <View className="flex-1">
-      <View className="h-80">
+      <View className={height <= 690 ? 'h-40' : 'h-80'}>
         <Image
-          source={{
-            uri: 'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
-          }}
-          className="w-full h-96 object-cover"
+          source={require('../../../assets/Sign_up.png')}
+          className={`w-full ${height <= 690 ? 'h-60' : 'h-96'} object-cover`}
         />
       </View>
       <KeyboardAvoidingView className="w-full flex-1 bg-gray-300 rounded-t-3xl items-center px-4 py-6">
