@@ -12,6 +12,12 @@ const useAuth = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [token, setToken] = useState('')
+  const [one, setOne] = useState('')
+  const [two, setTwo] = useState('')
+  const [three, setThree] = useState('')
+  const [four, setFour] = useState('')
+  const [five, setFive] = useState('')
+  const [six, setSix] = useState('')
   const addUserInfo = userStore((state) => state.addUserInfo)
   const removeUser = userStore((state) => state.removeUserInfo)
   const user = userStore((state) => state.userInfo)
@@ -20,6 +26,10 @@ const useAuth = () => {
   useEffect(() => {
     if (user?.accessToken) navigation.navigate('HomeScreen')
   }, [user])
+
+  useEffect(() => {
+    setToken(one + two + three + four + five + six)
+  }, [])
 
   // Login function that calls the supabase auth signInWithPassword function.
   async function login() {
@@ -124,6 +134,18 @@ const useAuth = () => {
     signOut,
     forgotPassword,
     checkOTP,
+    one,
+    setOne,
+    two,
+    setTwo,
+    three,
+    setThree,
+    four,
+    setFour,
+    five,
+    setFive,
+    six,
+    setSix,
   }
 }
 

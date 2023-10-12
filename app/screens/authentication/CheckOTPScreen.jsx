@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import {
   Text,
   Image,
@@ -12,18 +11,22 @@ import { useAuth } from './hooks'
 
 const CheckOTPScreen = () => {
   const height = Dimensions.get('window').height
-  const [one, setOne] = useState('')
-  const [two, setTwo] = useState('')
-  const [three, setThree] = useState('')
-  const [four, setFour] = useState('')
-  const [five, setFive] = useState('')
-  const [six, setSix] = useState('')
 
-  const { setToken, checkOTP } = useAuth()
-
-  useEffect(() => {
-    setToken(one + two + three + four + five + six)
-  }, [])
+  const {
+    one,
+    setOne,
+    two,
+    setTwo,
+    three,
+    setThree,
+    four,
+    setFour,
+    five,
+    setFive,
+    six,
+    setSix,
+    checkOTP,
+  } = useAuth()
 
   return (
     <View className="flex-1">
