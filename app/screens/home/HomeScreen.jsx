@@ -2,14 +2,13 @@ import {
   View,
   Text,
   SafeAreaView,
-  Image,
   TouchableOpacity,
   ScrollView,
 } from 'react-native'
 import normalize from 'react-native-normalize'
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
-import { Cards, Categories } from './components'
+import { Cards, CarouselScreen, Categories } from './components'
 import { userStore } from '../../store'
 import { useAuth } from '../../screens/authentication/hooks'
 import { CartIcon } from '../../components'
@@ -74,15 +73,7 @@ const HomeScreen = () => {
             paddingHorizontal: normalize(22, 'width'),
           }}
         >
-          <Image
-            source={{
-              uri: 'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
-            }}
-            className="w-full object-cover rounded-lg"
-            style={{
-              height: normalize(155),
-            }}
-          />
+          <CarouselScreen />
         </View>
         <View className="w-full" style={{ marginTop: normalize(44, 'height') }}>
           <Categories ITEMS={ITEMS} />

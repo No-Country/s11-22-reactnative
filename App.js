@@ -1,11 +1,18 @@
+import { Suspense } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
+import 'react-native-gesture-handler'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 import { StackNavigation } from './app/routes'
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <StackNavigation />
-    </NavigationContainer>
+    <Suspense fallback={null}>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <NavigationContainer>
+          <StackNavigation />
+        </NavigationContainer>
+      </GestureHandlerRootView>
+    </Suspense>
   )
 }
