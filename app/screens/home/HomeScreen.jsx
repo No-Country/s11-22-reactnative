@@ -1,4 +1,11 @@
-import { View, Text, SafeAreaView, Image, TouchableOpacity } from 'react-native'
+import {
+  View,
+  Text,
+  SafeAreaView,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native'
 import normalize from 'react-native-normalize'
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
@@ -40,6 +47,7 @@ const HomeScreen = () => {
         style={{
           marginTop: normalize(44, 'height'),
           paddingHorizontal: normalize(22, 'width'),
+          marginBottom: normalize(44, 'height'),
         }}
       >
         <TouchableOpacity
@@ -59,44 +67,45 @@ const HomeScreen = () => {
           <Ionicons name="log-out-outline" size={38} color="black" />
         </TouchableOpacity>
       </View>
-      <View
-        className="w-full"
-        style={{
-          paddingHorizontal: normalize(22, 'width'),
-          marginTop: normalize(44, 'height'),
-        }}
-      >
-        <Image
-          source={{
-            uri: 'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
-          }}
-          className="w-full object-cover rounded-lg"
+      <ScrollView showsVerticalScrollIndicator={false} className="w-full">
+        <View
+          className="w-full"
           style={{
-            height: normalize(155),
-          }}
-        />
-      </View>
-      <View className="w-full" style={{ marginTop: normalize(44, 'height') }}>
-        <Categories ITEMS={ITEMS} />
-      </View>
-      <View
-        className="w-full items-center flex-1"
-        style={{
-          marginTop: normalize(21, 'height'),
-          paddingHorizontal: normalize(22, 'width'),
-        }}
-      >
-        <Text
-          className="text-black font-light leading-5 tracking-tight"
-          style={{
-            fontSize: normalize(16),
-            marginBottom: normalize(33, 'height'),
+            paddingHorizontal: normalize(22, 'width'),
           }}
         >
-          Product categories
-        </Text>
-        <Cards />
-      </View>
+          <Image
+            source={{
+              uri: 'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
+            }}
+            className="w-full object-cover rounded-lg"
+            style={{
+              height: normalize(155),
+            }}
+          />
+        </View>
+        <View className="w-full" style={{ marginTop: normalize(44, 'height') }}>
+          <Categories ITEMS={ITEMS} />
+        </View>
+        <View
+          className="w-full items-center flex-1"
+          style={{
+            marginTop: normalize(21, 'height'),
+            paddingHorizontal: normalize(22, 'width'),
+          }}
+        >
+          <Text
+            className="text-black font-light leading-5 tracking-tight"
+            style={{
+              fontSize: normalize(16),
+              marginBottom: normalize(33, 'height'),
+            }}
+          >
+            Product categories
+          </Text>
+          <Cards />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }

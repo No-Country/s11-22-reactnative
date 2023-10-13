@@ -1,4 +1,4 @@
-import { FlatList, Image, TouchableOpacity } from 'react-native'
+import { Image, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import normalize from 'react-native-normalize'
 import ITEMS from '../../../utils/fakeData'
@@ -7,21 +7,18 @@ const Cards = () => {
   const navigation = useNavigation()
 
   return (
-    <FlatList
-      className="w-full"
-      data={ITEMS}
-      horizontal={false}
-      showsVerticalScrollIndicator={false}
-      renderItem={({ item }) => (
+    <>
+      {ITEMS?.map((item) => (
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate('ProductDetailScreen', { itemId: item.id })
+            navigation.navigate('ProductDetailScreen', { itemId: item?.id })
           }
           className="w-full"
+          key={item?.id}
         >
           <Image
             source={{
-              uri: 'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
+              uri: item?.productImage,
             }}
             className="w-full object-cover rounded-lg"
             style={{
@@ -30,9 +27,8 @@ const Cards = () => {
             }}
           />
         </TouchableOpacity>
-      )}
-      keyExtractor={(item) => item.id.toString()}
-    />
+      ))}
+    </>
   )
 }
 
