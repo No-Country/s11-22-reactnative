@@ -1,7 +1,14 @@
-import { View, Text, SafeAreaView, Dimensions, ScrollView } from 'react-native'
+import {
+  View,
+  Text,
+  SafeAreaView,
+  Dimensions,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native'
 import normalize from 'react-native-normalize'
-import { SearchBox } from '../../components'
-import { StylesExplorerScreen, StylesListScreen } from './components'
+import { Ionicons } from '@expo/vector-icons'
+import { StylesExplorerScreen, StylesListScreen, SearchBox } from './components'
 
 const ITEMS = [
   {
@@ -24,7 +31,7 @@ const ITEMS = [
   },
 ]
 
-const SearchScreen = () => {
+const SearchScreen = ({ navigation }) => {
   const SCREEN_WIDTH = Dimensions.get('window').width
   const SPACING = (SCREEN_WIDTH * 0.12) / 2
 
@@ -46,7 +53,12 @@ const SearchScreen = () => {
         >
           Browse
         </Text>
-        <SearchBox />
+        <View className="flex flex-row w-full items-center justify-between gap-1">
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Ionicons name="ios-arrow-back-outline" size={30} color="black" />
+          </TouchableOpacity>
+          <SearchBox />
+        </View>
         <Text
           style={{
             marginTop: normalize(22, 'height'),

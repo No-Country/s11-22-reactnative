@@ -33,7 +33,7 @@ const CartItems = () => {
               <Text>{item?.productType}</Text>
             </View>
             <View className="flex flex-row w-full items-center justify-between">
-              <Text>{item?.productPrice}</Text>
+              <Text>${item?.productPrice}USD</Text>
               <View className="flex flex-row items-center justify-center gap-3">
                 <TouchableOpacity onPress={() => removeProduct(item?.id)}>
                   <Ionicons name="remove-outline" size={24} color="black" />

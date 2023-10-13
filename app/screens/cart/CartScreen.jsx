@@ -10,8 +10,11 @@ import { useNavigation } from '@react-navigation/native'
 import normalize from 'react-native-normalize'
 import { Ionicons } from '@expo/vector-icons'
 import { CartItems } from './components'
+import { cartStore } from '../../store'
+import { totalAmount } from '../../utils'
 
 const CartScreen = () => {
+  const products = cartStore((state) => state.cart.products)
   const navigation = useNavigation()
   const SCREEN_WIDTH = Dimensions.get('window').width
   const SPACING = (SCREEN_WIDTH * 0.12) / 2
@@ -45,7 +48,7 @@ const CartScreen = () => {
             className="text-black font-normal leading-[1.31vh] tracking-tight"
             style={{ fontSize: normalize(18) }}
           >
-            Price
+            {totalAmount(products)}
           </Text>
         </View>
         <TouchableOpacity

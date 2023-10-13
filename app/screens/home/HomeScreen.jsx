@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 import { Cards, Categories } from './components'
 import { userStore } from '../../store'
 import { useAuth } from '../../screens/authentication/hooks'
+import { CartIcon } from '../../components'
 
 const ITEMS = [
   {
@@ -30,7 +31,6 @@ const ITEMS = [
 const HomeScreen = () => {
   const user = userStore((state) => state.userInfo)
   const navigation = useNavigation()
-
   const { signOut } = useAuth()
 
   return (
@@ -54,10 +54,7 @@ const HomeScreen = () => {
             Search
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('CartScreen')}>
-          <Ionicons name="ios-cart-outline" size={38} color="black" />
-        </TouchableOpacity>
-
+        <CartIcon size={38} />
         <TouchableOpacity onPress={signOut}>
           <Ionicons name="log-out-outline" size={38} color="black" />
         </TouchableOpacity>

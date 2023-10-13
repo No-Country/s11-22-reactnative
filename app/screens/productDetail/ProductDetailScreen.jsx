@@ -9,9 +9,10 @@ import {
 } from 'react-native'
 import normalize from 'react-native-normalize'
 import { Ionicons } from '@expo/vector-icons'
-import ProductInfo from './components/ProductInfo'
+import { ProductInfo } from './components'
 import { cartStore } from '../../store'
 import DATA from '../../utils/fakeData'
+import { CartIcon } from '../../components'
 
 const ProductDetailScreen = ({ route, navigation }) => {
   const SCREEN_HEIGHT = Dimensions.get('window').height
@@ -43,9 +44,7 @@ const ProductDetailScreen = ({ route, navigation }) => {
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Ionicons name="ios-arrow-back-outline" size={30} color="black" />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate('CartScreen')}>
-            <Ionicons name="ios-cart-outline" size={30} color="black" />
-          </TouchableOpacity>
+          <CartIcon size={30} />
         </View>
         <Image
           source={{
