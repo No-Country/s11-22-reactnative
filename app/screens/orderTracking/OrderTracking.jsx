@@ -24,19 +24,19 @@ const OrderTracking = () => {
         <HeadTitle title="Order tracking" />
       </View>
       <TabView
-        // renderTabBar={() => (
-        //   <TabBar
-        //     navigationState={{ routes, index }}
-        //     style={{ backgroundColor: 'white' }}
-        //     renderLabel={({ route, focused, color }) => (
-        //       <Text style={{ color: 'black' }}>{route.title}</Text>
-        //     )}
-        //     indicatorStyle={{ backgroundColor: '#000' }}
-        //   />
-        // )}
         navigationState={{ index, routes }}
         renderScene={renderScene}
         onIndexChange={setIndex}
+        renderTabBar={(props) => (
+          <TabBar
+            {...props}
+            style={{ backgroundColor: 'white' }}
+            renderLabel={({ route, focused, color }) => (
+              <Text style={{ color: 'black' }}>{route.title}</Text>
+            )}
+            indicatorStyle={{ backgroundColor: '#000' }}
+          />
+        )}
       />
     </SafeAreaView>
   )
