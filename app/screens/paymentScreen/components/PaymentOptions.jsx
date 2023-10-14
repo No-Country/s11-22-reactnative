@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { View, Text, Switch, Pressable, Dimensions } from 'react-native'
 import normalize from 'react-native-normalize'
+import { useNavigation } from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons'
 
 const PaymentOptions = () => {
   const { height } = Dimensions.get('window')
   const [isEnabled, setIsEnabled] = useState(false)
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState)
+  const navigation = useNavigation()
 
   return (
     <>
@@ -112,6 +114,7 @@ const PaymentOptions = () => {
           height: normalize(55),
           marginBottom: normalize((height * 0.28) / 2, 'height'),
         }}
+        onPress={() => navigation.navigate('OrderTracking')}
       >
         <View className="flex flex-row items-center justify-center gap-3">
           <View
