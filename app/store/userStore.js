@@ -13,7 +13,7 @@ const userStore = create(
         return get().userInfo
       },
       removeUserInfo: () => {
-        userStore.persist.clearStorage()
+        set({ userInfo: {} })
       },
     }),
     {

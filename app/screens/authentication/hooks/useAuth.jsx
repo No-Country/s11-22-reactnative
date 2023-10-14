@@ -38,7 +38,7 @@ const useAuth = () => {
       password,
     })
 
-    if (error) return Alert.alert(error.message)
+    if (error) return Alert.alert("Credentials don't match")
 
     // Adapt data to store it in the store.
     const adaptedUserData = loginAdapter(data)
