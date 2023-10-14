@@ -6,3 +6,4 @@ export { default as ForgotPasswordScreen } from './authentication/ForgotPassword
 export { default as CheckOTPScreen } from './authentication/CheckOTPScreen'
 export { default as ProductDetailScreen } from './productDetail/ProductDetailScreen'
 export { default as CartScreen } from './cart/CartScreen'
+export { default as PaymentScreen } from './paymentScreen/PaymentScreen'

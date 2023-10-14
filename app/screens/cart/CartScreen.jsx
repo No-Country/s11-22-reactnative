@@ -57,6 +57,7 @@ const CartScreen = () => {
             marginTop: normalize(44, 'height'),
             marginBottom: normalize(22, 'height'),
           }}
+          onPress={() => navigation.navigate('PaymentScreen')}
         >
           <Text
             style={{ fontSize: normalize(20) }}
