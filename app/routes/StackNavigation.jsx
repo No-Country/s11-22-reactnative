@@ -9,6 +9,7 @@ import {
   ProductDetailScreen,
   CartScreen,
   PaymentScreen,
+  OrderTracking,
 } from '../screens'
 
 const Stack = createNativeStackNavigator()
@@ -81,6 +82,13 @@ const StackNavigation = () => {
       <Stack.Screen
         name="PaymentScreen"
         component={PaymentScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="OrderTracking"
+        component={OrderTracking}
         options={{
           headerShown: false,
         }}
