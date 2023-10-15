@@ -13,34 +13,13 @@ import { userStore } from '../../store'
 import { useAuth } from '../../screens/authentication/hooks'
 import { CartIcon } from '../../components'
 
-const ITEMS = [
-  {
-    id: 1,
-  },
-  {
-    id: 2,
-  },
-  {
-    id: 3,
-  },
-  {
-    id: 4,
-  },
-  {
-    id: 5,
-  },
-  {
-    id: 6,
-  },
-]
-
 const HomeScreen = () => {
   const user = userStore((state) => state.userInfo)
   const navigation = useNavigation()
   const { signOut } = useAuth()
 
   return (
-    <SafeAreaView className="flex-1 bg-white items-center">
+    <SafeAreaView className="flex-1 bg-primary items-center">
       <View
         className="w-full flex-row justify-between items-center"
         style={{
@@ -50,13 +29,14 @@ const HomeScreen = () => {
         }}
       >
         <TouchableOpacity
-          className="pl-3 h-11 rounded-lg bg-[#d9d9d9] flex items-start justify-center"
+          className="pl-1 h-11 rounded-lg bg-secondary flex flex-row items-center gap-1"
           style={{ width: normalize(278) }}
           onPress={() => navigation.navigate('SearchScreen')}
         >
+          <Ionicons name="search" size={24} color="#114949" />
           <Text
-            className="font-light text-black leading-5 tracking-tight"
-            style={{ fontSize: normalize(16) }}
+            className="font-normal text-[#181818da] leading-[1.37vh] tracking-tight"
+            style={{ fontSize: normalize(17) }}
           >
             Search
           </Text>
@@ -75,8 +55,30 @@ const HomeScreen = () => {
         >
           <CarouselScreen />
         </View>
-        <View className="w-full" style={{ marginTop: normalize(44, 'height') }}>
-          <Categories ITEMS={ITEMS} />
+        <View className="w-full" style={{ marginTop: normalize(30, 'height') }}>
+          <View
+            className="flex flex-row items-center justify-between w-full"
+            style={{
+              paddingHorizontal: normalize(22, 'width'),
+              marginBottom: normalize(11, 'height'),
+            }}
+          >
+            <Text
+              style={{ fontSize: normalize(18) }}
+              className="font-medium leading-[1.31vh] tracking-tight"
+            >
+              Categories
+            </Text>
+            <TouchableOpacity>
+              <Text
+                className="text-primary leading-[1.31vh] tracking-tight"
+                style={{ fontSize: normalize(12) }}
+              >
+                See all
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <Categories />
         </View>
         <View
           className="w-full items-center flex-1"

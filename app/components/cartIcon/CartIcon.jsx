@@ -28,7 +28,7 @@ const CartIcon = ({ size }) => {
           </Text>
         </View>
       )}
-      <Ionicons name="ios-cart-outline" size={size} color="black" />
+      <Ionicons name="ios-cart-outline" size={size} color="#114949" />
     </TouchableOpacity>
   )
 }

@@ -18,7 +18,8 @@ const CarouselScreen = () => {
           source={{
             uri: item.image?.uri,
           }}
-          className="w-full h-full object-cover rounded-lg"
+          className="w-full object-cover rounded-lg"
+          style={{ height: normalize(155) }}
         />
       )}
     />
