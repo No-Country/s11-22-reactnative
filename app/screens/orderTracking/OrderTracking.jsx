@@ -1,8 +1,8 @@
+import { useState } from 'react'
 import { Text, SafeAreaView, Dimensions, View } from 'react-native'
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view'
 import { HeadTitle } from '../../components'
 import { OrderHistory, PendingOrder } from './components'
-import { useState } from 'react'
 
 const renderScene = SceneMap({
   pending_order: PendingOrder,
@@ -31,7 +31,7 @@ const OrderTracking = () => {
           <TabBar
             {...props}
             style={{ backgroundColor: 'white' }}
-            renderLabel={({ route, focused, color }) => (
+            renderLabel={({ route }) => (
               <Text style={{ color: 'black' }}>{route.title}</Text>
             )}
             indicatorStyle={{ backgroundColor: '#000' }}

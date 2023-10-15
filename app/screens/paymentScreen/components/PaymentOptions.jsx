@@ -112,7 +112,7 @@ const PaymentOptions = () => {
           paddingLeft: normalize(11.63, 'width'),
           paddingRight: normalize(12.69, 'width'),
           height: normalize(55),
-          marginBottom: normalize((height * 0.28) / 2, 'height'),
+          marginBottom: normalize((height * 0.27) / 2, 'height'),
         }}
         onPress={() => navigation.navigate('OrderTracking')}
       >

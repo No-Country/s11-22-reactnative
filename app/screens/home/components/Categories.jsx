@@ -9,10 +9,10 @@ import normalize from 'react-native-normalize'
 import { useCategory } from '../hook'
 
 const Categories = () => {
-  const SRC_WIDTH = Dimensions.get('window').width
-  const SPACING = (SRC_WIDTH * 0.12) / 2
+  const { width } = Dimensions.get('window')
+  const SPACING = (width * 0.12) / 2
   const { image } = useCategory()
-  console.log(image)
+
   return (
     <FlatList
       data={image}
@@ -22,7 +22,7 @@ const Categories = () => {
         <TouchableOpacity
           className="flex justify-center items-center"
           style={{
-            marginRight: normalize(27),
+            marginRight: normalize(27, 'width'),
             marginLeft: index === 0 ? SPACING : 0,
           }}
         >
@@ -31,14 +31,14 @@ const Categories = () => {
             className="w-14 h-14 rounded-lg object-cover"
           />
           <Text
-            className="font-light leading-[1.31vh] tracking-tight mt-2 capitalize"
-            style={{ fontSize: normalize(9) }}
+            className="leading-[1.31vh] tracking-tight mt-2 capitalize"
+            style={{ fontSize: normalize(10) }}
           >
             {item?.name}
           </Text>
         </TouchableOpacity>
       )}
-      keyExtractor={(item) => item.id}
+      keyExtractor={(item) => item?.id}
     />
   )
 }

@@ -40,7 +40,7 @@ const SearchScreen = ({ navigation }) => {
       <View
         className="w-full"
         style={{
-          paddingHorizontal: normalize(22, 'width'),
+          paddingHorizontal: SPACING,
           marginTop: normalize(44, 'height'),
         }}
       >

@@ -1,20 +1,15 @@
 import { View, TouchableOpacity, Text } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import { useNavigation } from '@react-navigation/native'
 import normalize from 'react-native-normalize'
 import { cartStore } from '../../store'
 import { totalQuantity } from '../../utils'
 
-const CartIcon = ({ size }) => {
-  const navigation = useNavigation()
+const CartIcon = ({ size, handlePress, showQuantity }) => {
   const products = cartStore((state) => state.cart.products)
 
   return (
-    <TouchableOpacity
-      className="relative"
-      onPress={() => navigation.navigate('CartScreen')}
-    >
-      {products?.length > 0 && (
+    <TouchableOpacity className="relative" onPress={handlePress}>
+      {products?.length > 0 && showQuantity && (
         <View
           className={
             'absolute -top-4 left-2 bg-[#809671] w-6 h-6 rounded-full flex items-center justify-center z-10'

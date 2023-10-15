@@ -41,7 +41,11 @@ const HomeScreen = () => {
             Search
           </Text>
         </TouchableOpacity>
-        <CartIcon size={38} />
+        <CartIcon
+          size={38}
+          handlePress={() => navigation.navigate('CartScreen')}
+          showQuantity={true}
+        />
         <TouchableOpacity onPress={signOut}>
           <Ionicons name="log-out-outline" size={38} color="black" />
         </TouchableOpacity>
@@ -83,19 +87,26 @@ const HomeScreen = () => {
         <View
           className="w-full items-center flex-1"
           style={{
-            marginTop: normalize(21, 'height'),
+            marginTop: normalize(22, 'height'),
             paddingHorizontal: normalize(22, 'width'),
           }}
         >
-          <Text
-            className="text-black font-light leading-5 tracking-tight"
-            style={{
-              fontSize: normalize(16),
-              marginBottom: normalize(33, 'height'),
-            }}
-          >
-            Product categories
-          </Text>
+          <View className="flex flex-row items-center justify-between w-full">
+            <Text
+              style={{ fontSize: normalize(18) }}
+              className="font-medium leading-[1.31vh] tracking-tight"
+            >
+              Most popular
+            </Text>
+            <TouchableOpacity>
+              <Text
+                className="text-primary leading-[1.31vh] tracking-tight"
+                style={{ fontSize: normalize(12) }}
+              >
+                See all
+              </Text>
+            </TouchableOpacity>
+          </View>
           <Cards />
         </View>
       </ScrollView>
