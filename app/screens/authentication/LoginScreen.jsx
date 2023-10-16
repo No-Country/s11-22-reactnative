@@ -20,17 +20,22 @@ const LoginScreen = () => {
         />
       </View>
 
-      <KeyboardAvoidingView className="w-full flex-1 bg-gray-300 rounded-t-3xl items-center px-4 py-6">
-        <Text className="text-2xl mb-4">Log In</Text>
+      <KeyboardAvoidingView className="w-full flex-1 bg-[#E5E0D8] rounded-t-3xl items-center px-4 py-6">
+        <Text className="text-2xl mb-4" style={{ fontFamily: 'mrt-400' }}>
+          Welcome back
+        </Text>
 
         <LoginForm />
 
         <SignInOptions />
 
-        <Text className={`font-light ${height <= 690 ? 'mt-4' : 'mt-8'}`}>
+        <Text
+          className={`${height <= 690 ? 'mt-4' : 'mt-8'}`}
+          style={{ fontFamily: 'mrt-400' }}
+        >
           Dont&#39;t have an account?
           <Link to="/SignUpScreen">
-            <Text className="font-semibold"> Sign up</Text>
+            <Text style={{ fontFamily: 'mrt-600' }}> Sign up</Text>
           </Link>
         </Text>
       </KeyboardAvoidingView>

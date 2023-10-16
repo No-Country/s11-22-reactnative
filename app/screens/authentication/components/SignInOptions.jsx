@@ -1,10 +1,10 @@
 import { View, Text, TouchableOpacity, Dimensions } from 'react-native'
-import { AntDesign } from '@expo/vector-icons'
-import { useAuth } from '../hooks'
+import { AntDesign, FontAwesome5 } from '@expo/vector-icons'
+// import { useAuth } from '../hooks'
 
 const SignInOptions = () => {
   const height = Dimensions.get('window').height
-  const { loginOAuth } = useAuth()
+  // const { loginOAuth } = useAuth()
 
   return (
     <>
@@ -12,27 +12,21 @@ const SignInOptions = () => {
         className={`font-light text-center w-full ${
           height <= 690 ? 'mb-2' : 'mb-6'
         } mt-10`}
+        style={{ fontFamily: 'mrt-400' }}
       >
         Or continue with
       </Text>
-      <View className="flex-row gap-5 items-center justify-center">
-        <TouchableOpacity
-          className="w-11 h-11 rounded-lg bg-gray-200 items-center justify-center"
-          onPress={() => loginOAuth('google')}
-        >
-          <AntDesign name="google" size={24} color="black" />
+      <View className="flex-row gap-8 items-center justify-center">
+        <TouchableOpacity onPress={() => {}}>
+          <AntDesign name="google" size={36} color="#809671" />
         </TouchableOpacity>
-        <TouchableOpacity
-          className="w-11 h-11 rounded-lg bg-gray-200 items-center justify-center"
-          onPress={() => loginOAuth('facebook')}
-        >
-          <AntDesign name="facebook-square" size={24} color="black" />
+
+        <TouchableOpacity onPress={() => {}}>
+          <AntDesign name="apple1" size={36} color="#555555" />
         </TouchableOpacity>
-        <TouchableOpacity
-          className="w-11 h-11 rounded-lg bg-gray-200 items-center justify-center"
-          onPress={() => loginOAuth('apple')}
-        >
-          <AntDesign name="apple1" size={24} color="black" />
+
+        <TouchableOpacity onPress={() => {}}>
+          <FontAwesome5 name="facebook" size={36} color="blue" />
         </TouchableOpacity>
       </View>
     </>
