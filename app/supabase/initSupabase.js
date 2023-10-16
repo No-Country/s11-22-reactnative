@@ -10,5 +10,5 @@ const key =
 
 export const supabase = createClient(url, key, {
   localStorage: AsyncStorage,
-  detectSessionInUrl: false, // Prevents Supabase from evaluating window.location.href, breaking mobile
+  detectSessionInUrl: false,
 })

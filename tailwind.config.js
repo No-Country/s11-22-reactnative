@@ -16,6 +16,9 @@ module.exports = {
         primary: '#114949',
       },
     },
+    fontFamily: {
+      montserrat: ['Montserrat'],
+    },
   },
   plugins: [],
 }
