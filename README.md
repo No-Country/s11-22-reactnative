@@ -31,8 +31,8 @@ yarn expo
 
 ## Contributing
 
+- Mica Lemiña
 - [Diego Fernández](https://github.com/Diego-Fdez)
-- [Mariano Obligado](https://github.com/obli137)
 - [E. J. Ordonez](https://github.com/r4zu)
 
 ## License
