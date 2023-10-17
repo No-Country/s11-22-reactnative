@@ -49,7 +49,7 @@ const TabNavigation = () => {
         component={CartScreen}
         options={{
           headerShown: false,
-          tabBarLabel: () => <Text style={styles.text}>Home</Text>,
+          tabBarLabel: () => <Text style={styles.text}>Cart</Text>,
           tabBarIcon: ({ focused }) =>
             focused ? (
               <Ionicons name="ios-cart" size={26} color="#114949" />
