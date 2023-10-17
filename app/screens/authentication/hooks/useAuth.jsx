@@ -15,6 +15,7 @@ const useAuth = () => {
   const addUserInfo = userStore((state) => state.addUserInfo)
   const removeUser = userStore((state) => state.removeUserInfo)
   const user = userStore((state) => state.userInfo)
+  const setIsLoading = userStore((state) => state.setIsLoading)
 
   // If the user is logged in, redirect to the HomeScreen.
   useEffect(() => {
@@ -23,17 +24,22 @@ const useAuth = () => {
 
   // Login function that calls the supabase auth signInWithPassword function.
   async function login() {
+    setIsLoading(true)
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     })
 
-    if (error) return Alert.alert("Credentials don't match")
+    if (error) {
+      setIsLoading(false)
+      Alert.alert("Credentials don't match")
+    }
 
     // Adapt data to store it in the store.
     const adaptedUserData = loginAdapter(data)
     addUserInfo(adaptedUserData)
     navigation.navigate('HomeScreen')
+    setIsLoading(false)
 
     setEmail('')
     setPassword('')

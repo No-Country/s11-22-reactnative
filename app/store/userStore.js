@@ -6,6 +6,7 @@ const userStore = create(
   persist(
     (set, get) => ({
       userInfo: {},
+      isLoading: false,
       addUserInfo: (user) => {
         set({ userInfo: user })
       },
@@ -14,6 +15,9 @@ const userStore = create(
       },
       removeUserInfo: () => {
         set({ userInfo: {} })
+      },
+      setIsLoading: (isLoading) => {
+        set({ isLoading })
       },
     }),
     {
