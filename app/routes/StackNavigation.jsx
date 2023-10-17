@@ -3,13 +3,12 @@ import {
   LoginScreen,
   SignUpScreen,
   ForgotPasswordScreen,
-  HomeScreen,
   SearchScreen,
   ProductDetailScreen,
-  CartScreen,
   PaymentScreen,
   OrderTracking,
 } from '../screens'
+import TabNavigation from './TabNavigation'
 
 const Stack = createNativeStackNavigator()
 
@@ -45,7 +44,7 @@ const StackNavigation = () => {
       />
       <Stack.Screen
         name="HomeScreen"
-        component={HomeScreen}
+        component={TabNavigation}
         options={{
           headerShown: false,
         }}
@@ -66,7 +65,7 @@ const StackNavigation = () => {
       />
       <Stack.Screen
         name="CartScreen"
-        component={CartScreen}
+        component={TabNavigation}
         options={{
           headerShown: false,
         }}
