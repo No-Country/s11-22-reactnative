@@ -4,6 +4,8 @@ import * as SplashScreen from 'expo-splash-screen'
 
 export const useFont = () => {
   const [isLoaded] = useFonts({
+    'mrt-200': require('../../assets/fonts/Montserrat/Montserrat-ExtraLight.ttf'),
+    'mrt-300': require('../../assets/fonts/Montserrat/Montserrat-Light.ttf'),
     'mrt-400': require('../../assets/fonts/Montserrat/Montserrat-Regular.ttf'), // eslint-disable-lin
     'mrt-500': require('../../assets/fonts/Montserrat/Montserrat-Medium.ttf'),
     'mrt-600': require('../../assets/fonts/Montserrat/Montserrat-SemiBold.ttf'),
