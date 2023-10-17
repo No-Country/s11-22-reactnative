@@ -7,9 +7,14 @@ import {
 } from 'react-native'
 import { Link } from '@react-navigation/native'
 import { LoginForm, SignInOptions } from './components'
+import { userStore } from '../../store'
+import { SpinnerScreen } from '../../components'
 
 const LoginScreen = () => {
-  const height = Dimensions.get('window').height
+  const { height } = Dimensions.get('window')
+  const isLoading = userStore((state) => state.isLoading)
+
+  if (isLoading) return <SpinnerScreen />
 
   return (
     <View className="flex-1">
