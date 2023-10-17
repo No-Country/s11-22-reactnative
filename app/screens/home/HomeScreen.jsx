@@ -9,12 +9,10 @@ import normalize from 'react-native-normalize'
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { Cards, CarouselScreen, Categories } from './components'
-import { userStore } from '../../store'
 import { useAuth } from '../../screens/authentication/hooks'
 import { CartIcon } from '../../components'
 
 const HomeScreen = () => {
-  const user = userStore((state) => state.userInfo)
   const navigation = useNavigation()
   const { signOut } = useAuth()
 
@@ -36,7 +34,7 @@ const HomeScreen = () => {
           <Ionicons name="search" size={24} color="#114949" />
           <Text
             className="font-normal text-[#181818da] leading-[1.37vh] tracking-tight"
-            style={{ fontSize: normalize(17) }}
+            style={{ fontSize: normalize(17), fontFamily: 'mrt-400' }}
           >
             Search
           </Text>
@@ -68,7 +66,7 @@ const HomeScreen = () => {
             }}
           >
             <Text
-              style={{ fontSize: normalize(18) }}
+              style={{ fontSize: normalize(18), fontFamily: 'mrt-500' }}
               className="font-medium leading-[1.31vh] tracking-tight"
             >
               Categories
@@ -76,7 +74,7 @@ const HomeScreen = () => {
             <TouchableOpacity>
               <Text
                 className="text-primary leading-[1.31vh] tracking-tight"
-                style={{ fontSize: normalize(12) }}
+                style={{ fontSize: normalize(12), fontFamily: 'mrt-400' }}
               >
                 See all
               </Text>
@@ -93,7 +91,7 @@ const HomeScreen = () => {
         >
           <View className="flex flex-row items-center justify-between w-full">
             <Text
-              style={{ fontSize: normalize(18) }}
+              style={{ fontSize: normalize(18), fontFamily: 'mrt-500' }}
               className="font-medium leading-[1.31vh] tracking-tight"
             >
               Most popular
@@ -101,7 +99,7 @@ const HomeScreen = () => {
             <TouchableOpacity>
               <Text
                 className="text-primary leading-[1.31vh] tracking-tight"
-                style={{ fontSize: normalize(12) }}
+                style={{ fontSize: normalize(12), fontFamily: 'mrt-400' }}
               >
                 See all
               </Text>

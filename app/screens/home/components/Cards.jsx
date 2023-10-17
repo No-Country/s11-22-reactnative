@@ -32,13 +32,13 @@ const Cards = () => {
             className="w-full object-cover rounded"
             style={{
               height: normalize(155),
-              marginBottom: normalize(10, 'height'),
+              marginBottom: normalize(8, 'height'),
             }}
           />
           <View className="flex flex-row w-full items-center justify-between">
             <Text
               className="leading-[1.31vh] tracking-tight"
-              style={{ fontSize: normalize(14) }}
+              style={{ fontSize: normalize(14), fontFamily: 'mrt-400' }}
             >
               {item?.productName}
             </Text>
@@ -46,14 +46,19 @@ const Cards = () => {
               <Ionicons name="md-heart-outline" size={18} color="black" />
             </TouchableOpacity>
           </View>
-          <Text className="font-light" style={{ fontSize: normalize(10) }}>
+          <Text
+            className="font-extralight"
+            style={{ fontSize: normalize(10), fontFamily: 'mrt-200' }}
+          >
             Bohemian collection
           </Text>
           <View className="flex flex-row w-full items-center justify-between">
-            <Text>${item?.productPrice}</Text>
+            <Text style={{ fontSize: normalize(14), fontFamily: 'mrt-400' }}>
+              ${item?.productPrice}
+            </Text>
             <View className="z-20">
               <CartIcon
-                size={18}
+                size={22}
                 handlePress={() => addToCart(item)}
                 showQuantity={false}
               />

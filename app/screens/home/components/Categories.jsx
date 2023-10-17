@@ -32,7 +32,7 @@ const Categories = () => {
           />
           <Text
             className="leading-[1.31vh] tracking-tight mt-2 capitalize"
-            style={{ fontSize: normalize(10) }}
+            style={{ fontSize: normalize(10), fontFamily: 'mrt-400' }}
           >
             {item?.name}
           </Text>
