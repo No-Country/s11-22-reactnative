@@ -2,9 +2,9 @@ import { Image, TouchableOpacity, View, Text } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import normalize from 'react-native-normalize'
 import { Ionicons } from '@expo/vector-icons'
-import ITEMS from '../../../utils/fakeData'
-import { CartIcon } from '../../../components'
-import { cartStore } from '../../../store'
+import ITEMS from '../../utils/fakeData'
+import { CartIcon } from '..'
+import { cartStore } from '../../store'
 
 const Cards = () => {
   const navigation = useNavigation()

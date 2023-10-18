@@ -8,13 +8,15 @@ import {
 import normalize from 'react-native-normalize'
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
-import { Cards, CarouselScreen, Categories } from './components'
+import { CarouselScreen } from './components'
 import { useAuth } from '../../screens/authentication/hooks'
-import { CartIcon } from '../../components'
+import { CartIcon, MiniCards, Cards, TitleContent } from '../../components'
+import { useCategory } from './hook'
 
 const HomeScreen = () => {
   const navigation = useNavigation()
   const { signOut } = useAuth()
+  const { image } = useCategory()
 
   return (
     <SafeAreaView className="flex-1 bg-primary items-center">
@@ -65,46 +67,19 @@ const HomeScreen = () => {
               marginBottom: normalize(11, 'height'),
             }}
           >
-            <Text
-              style={{ fontSize: normalize(18), fontFamily: 'mrt-500' }}
-              className="font-medium leading-[1.31vh] tracking-tight"
-            >
-              Categories
-            </Text>
-            <TouchableOpacity>
-              <Text
-                className="text-primary leading-[1.31vh] tracking-tight"
-                style={{ fontSize: normalize(12), fontFamily: 'mrt-400' }}
-              >
-                See all
-              </Text>
-            </TouchableOpacity>
+            <TitleContent title="Categories" />
           </View>
-          <Categories />
+          <MiniCards data={image} />
         </View>
         <View
           className="w-full items-center flex-1"
           style={{
             marginTop: normalize(22, 'height'),
             paddingHorizontal: normalize(22, 'width'),
+            marginBottom: normalize(67, 'height'),
           }}
         >
-          <View className="flex flex-row items-center justify-between w-full">
-            <Text
-              style={{ fontSize: normalize(18), fontFamily: 'mrt-500' }}
-              className="font-medium leading-[1.31vh] tracking-tight"
-            >
-              Most popular
-            </Text>
-            <TouchableOpacity>
-              <Text
-                className="text-primary leading-[1.31vh] tracking-tight"
-                style={{ fontSize: normalize(12), fontFamily: 'mrt-400' }}
-              >
-                See all
-              </Text>
-            </TouchableOpacity>
-          </View>
+          <TitleContent title="Most popular" />
           <Cards />
         </View>
       </ScrollView>

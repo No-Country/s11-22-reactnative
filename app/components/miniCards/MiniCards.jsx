@@ -6,16 +6,14 @@ import {
   Text,
 } from 'react-native'
 import normalize from 'react-native-normalize'
-import { useCategory } from '../hook'
 
-const Categories = () => {
+const MiniCards = ({ data }) => {
   const { width } = Dimensions.get('window')
   const SPACING = (width * 0.12) / 2
-  const { image } = useCategory()
 
   return (
     <FlatList
-      data={image}
+      data={data}
       horizontal={true}
       showsHorizontalScrollIndicator={false}
       renderItem={({ index, item }) => (
@@ -43,4 +41,4 @@ const Categories = () => {
   )
 }
 
-export default Categories
+export default MiniCards
