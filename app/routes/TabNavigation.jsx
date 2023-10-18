@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { Text, View, StyleSheet, Dimensions } from 'react-native'
+import { Text, View, StyleSheet, Dimensions, Image } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import normalize from 'react-native-normalize'
 import Svg, { Path } from 'react-native-svg'
@@ -9,6 +9,7 @@ const Tab = createBottomTabNavigator()
 
 const TabNavigation = () => {
   const { width } = Dimensions.get('window')
+  const defaultColor = '#114949'
 
   return (
     <Tab.Navigator
@@ -50,31 +51,69 @@ const TabNavigation = () => {
         }}
       />
       <Tab.Screen
+        name="cart"
+        component={CartScreen}
+        options={{
+          headerShown: false,
+          tabBarLabel: () => <Text style={styles.text}>Catalog</Text>,
+          tabBarIcon: ({ focused }) =>
+            focused ? (
+              <Ionicons name="ios-grid" size={26} color={defaultColor} />
+            ) : (
+              <Ionicons
+                name="ios-grid-outline"
+                size={26}
+                color={defaultColor}
+              />
+            ),
+          tabBarHideOnKeyboard: true,
+        }}
+      />
+      <Tab.Screen
         name="home2"
         component={HomeScreen}
         options={{
           headerShown: false,
           tabBarLabel: () => null,
-          tabBarIcon: () => (
+          tabBarIcon: ({ focused }) => (
             <View style={styles.fab}>
-              <Ionicons name="ios-scan" size={24} color="white" />
+              {focused ? (
+                <Ionicons name="ios-cube-sharp" size={28} color="#fff" />
+              ) : (
+                <Ionicons name="ios-cube-outline" size={28} color="#fff" />
+              )}
             </View>
           ),
           tabBarHideOnKeyboard: true,
         }}
       />
       <Tab.Screen
-        name="cart"
+        name="cart2"
         component={CartScreen}
         options={{
           headerShown: false,
-          tabBarLabel: () => <Text style={styles.text}>Cart</Text>,
+          tabBarLabel: () => <Text style={styles.text}>Favorites</Text>,
           tabBarIcon: ({ focused }) =>
             focused ? (
-              <Ionicons name="ios-cart" size={26} color="#114949" />
+              <Ionicons name="heart-sharp" size={26} color={defaultColor} />
             ) : (
-              <Ionicons name="ios-cart-outline" size={26} color="#114949" />
+              <Ionicons name="heart-outline" size={26} color={defaultColor} />
             ),
+          tabBarHideOnKeyboard: true,
+        }}
+      />
+      <Tab.Screen
+        name="cart3"
+        component={CartScreen}
+        options={{
+          headerShown: false,
+          tabBarLabel: () => <Text style={styles.text}>Profile</Text>,
+          tabBarIcon: () => (
+            <Image
+              source={{ uri: 'https://picsum.photos/300/300' }}
+              style={styles.profileImage}
+            />
+          ),
           tabBarHideOnKeyboard: true,
         }}
       />
@@ -107,5 +146,11 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  profileImage: {
+    width: normalize(25),
+    height: normalize(25),
+    borderRadius: 25 / 2,
+    objectFit: 'contain',
   },
 })
