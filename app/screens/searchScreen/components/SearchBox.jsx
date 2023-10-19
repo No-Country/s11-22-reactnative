@@ -6,7 +6,7 @@ const SearchBox = () => {
   return (
     <View
       className="flex relative h-11 items-center"
-      style={{ width: normalize(308) }}
+      style={{ width: normalize(267) }}
     >
       <View className="absolute h-full left-1 z-10 flex items-center justify-center">
         <Ionicons name="search" size={21} color="#114949" />
@@ -14,7 +14,7 @@ const SearchBox = () => {
       <TextInput
         className="w-full px-8 h-full bg-secondary text-black font-light leading-5 tracking-tight"
         placeholder="Search"
-        placeholderTextColor="#000"
+        placeholderTextColor="#121212dc"
         keyboardType="web-search"
         style={{
           fontSize: normalize(17),

@@ -71,26 +71,22 @@ const HomeScreen = () => {
         >
           <CarouselScreen />
         </View>
-        <View className="w-full" style={{ marginTop: normalize(30, 'height') }}>
-          <View
-            className="w-full"
-            style={{
-              marginBottom: normalize(11, 'height'),
-            }}
-          >
-            <TitleContent title="Categories" marginTop={0} />
-          </View>
-          <MiniCards data={image} />
+        <View
+          className="w-full"
+          style={{
+            marginBottom: normalize(11, 'height'),
+          }}
+        >
+          <TitleContent title="Categories" marginTop={30} />
         </View>
+        <MiniCards data={image} />
         <View
           className="w-full items-center flex-1"
           style={{
-            marginTop: normalize(22, 'height'),
             marginBottom: normalize(67, 'height'),
           }}
         >
-          <TitleContent title="Most popular" marginTop={0} />
-
+          <TitleContent title="Most popular" marginTop={22} />
           <Cards products={getProductsByView('popular')} />
           <TitleContent title="Furniture sets" marginTop={12} />
           <Cards products={getProductsByView('set')} />
