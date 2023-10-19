@@ -1,4 +1,3 @@
-export { default as Cards } from './cards/Cards'
 export { default as CartIcon } from './cartIcon/CartIcon'
 export { default as HeadTitle } from './headTitle/HeadTitle'
 export { default as MiniCards } from './miniCards/MiniCards'

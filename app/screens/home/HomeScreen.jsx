@@ -13,13 +13,13 @@ import { useAuth } from '../../screens/authentication/hooks'
 import {
   CartIcon,
   MiniCards,
-  Cards,
   TitleContent,
   SpinnerScreen,
 } from '../../components'
 import { useCategory } from './hook'
 import { productStore } from '../../store'
 import { useProducts } from '../../hooks'
+import Cards from '../../components/cards/Cards'
 
 const HomeScreen = () => {
   const navigation = useNavigation()
@@ -29,7 +29,7 @@ const HomeScreen = () => {
   const { popularProducts, getProductsByName } = useProducts()
 
   if (isLoading) return <SpinnerScreen />
-
+  console.log(popularProducts)
   return (
     <SafeAreaView className="flex-1 bg-primary items-center">
       <View
