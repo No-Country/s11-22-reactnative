@@ -7,14 +7,16 @@ import {
 } from 'react-native'
 import normalize from 'react-native-normalize'
 import { Ionicons } from '@expo/vector-icons'
-import { SearchBox } from './components'
+import { RoomsCards, SearchBox } from './components'
 import { Cards, MiniCards, TitleContent } from '../../components'
 import { useCategory } from '../home/hook'
+import { useProducts } from '../../hooks'
 
 const SearchScreen = ({ navigation }) => {
   const { width } = Dimensions.get('window')
   const SPACING = (width * 0.12) / 2
   const { image } = useCategory() //ToDo: change for styles
+  const { popularProducts } = useProducts()
 
   return (
     <SafeAreaView className="flex-1 bg-primary">
@@ -50,7 +52,7 @@ const SearchScreen = ({ navigation }) => {
               marginBottom: normalize(11, 'height'),
             }}
           >
-            <TitleContent title="Explore by styles" />
+            <TitleContent title="Explore by styles" marginTop={0} />
           </View>
           <MiniCards data={image} />
           <View
@@ -60,10 +62,10 @@ const SearchScreen = ({ navigation }) => {
               marginTop: normalize(22, 'height'),
             }}
           >
-            <TitleContent title="Trending now" />
-            <Cards />
-            <TitleContent title="Shop by room" />
-            <Cards />
+            <TitleContent title="Trending now" marginTop={0} />
+            <Cards products={popularProducts} />
+            <TitleContent title="Shop by room" marginTop={12} />
+            <RoomsCards />
           </View>
         </View>
       </ScrollView>

@@ -10,13 +10,25 @@ import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { CarouselScreen } from './components'
 import { useAuth } from '../../screens/authentication/hooks'
-import { CartIcon, MiniCards, Cards, TitleContent } from '../../components'
+import {
+  CartIcon,
+  MiniCards,
+  Cards,
+  TitleContent,
+  SpinnerScreen,
+} from '../../components'
 import { useCategory } from './hook'
+import { productStore } from '../../store'
+import { useProducts } from '../../hooks'
 
 const HomeScreen = () => {
   const navigation = useNavigation()
   const { signOut } = useAuth()
   const { image } = useCategory()
+  const isLoading = productStore((state) => state.isLoading)
+  const { popularProducts, getProductsByName } = useProducts()
+
+  if (isLoading) return <SpinnerScreen />
 
   return (
     <SafeAreaView className="flex-1 bg-primary items-center">
@@ -67,7 +79,7 @@ const HomeScreen = () => {
               marginBottom: normalize(11, 'height'),
             }}
           >
-            <TitleContent title="Categories" />
+            <TitleContent title="Categories" marginTop={0} />
           </View>
           <MiniCards data={image} />
         </View>
@@ -79,8 +91,10 @@ const HomeScreen = () => {
             marginBottom: normalize(67, 'height'),
           }}
         >
-          <TitleContent title="Most popular" />
-          <Cards />
+          <TitleContent title="Most popular" marginTop={0} />
+          <Cards products={popularProducts} />
+          <TitleContent title="Furniture sets" marginTop={12} />
+          <Cards products={getProductsByName('set')} />
         </View>
       </ScrollView>
     </SafeAreaView>

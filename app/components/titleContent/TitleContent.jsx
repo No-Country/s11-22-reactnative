@@ -1,9 +1,12 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import normalize from 'react-native-normalize'
 
-const TitleContent = ({ title }) => {
+const TitleContent = ({ title, marginTop }) => {
   return (
-    <View className="flex flex-row items-center justify-between w-full">
+    <View
+      className="flex flex-row items-center justify-between w-full"
+      style={{ marginTop: normalize(marginTop, 'height') }}
+    >
       <Text
         style={{ fontSize: normalize(18), fontFamily: 'mrt-500' }}
         className="font-medium leading-[1.31vh] tracking-tight"

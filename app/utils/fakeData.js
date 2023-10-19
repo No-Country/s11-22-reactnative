@@ -1,50 +1,58 @@
 const DATA = [
   {
     id: 1,
-    productName: 'Product 1',
-    productType: 'product Type',
-    productPrice: 100,
-    productImage:
+    name: 'Goose lamp',
+    description: 'Vintage collection',
+    price: 375,
+    image:
       'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
   },
   {
     id: 2,
-    productName: 'Product 2',
-    productType: 'product Type',
-    productPrice: 100,
-    productImage:
+    name: 'Bamboo chair',
+    description: 'Bohemian collection',
+    price: 100,
+    image:
       'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
   },
   {
     id: 3,
-    productName: 'Product 3',
-    productType: 'product Type',
-    productPrice: 100,
-    productImage:
+    name: 'Coffee table',
+    description: 'Modern collection',
+    price: 100,
+    image:
       'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
   },
   {
     id: 4,
-    productName: 'Product 4',
-    productType: 'product Type',
-    productPrice: 100,
-    productImage:
+    name: 'Bed set',
+    description: 'Linen collection',
+    price: 100,
+    image:
       'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
   },
   {
     id: 5,
-    productName: 'Product 4',
-    productType: 'product Type',
-    productPrice: 100,
-    productImage:
+    name: 'Garden set',
+    description: 'Summer 96´ collection',
+    price: 100,
+    image:
       'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
   },
   {
     id: 6,
-    productName: 'Product 4',
-    productType: 'product Type',
-    productPrice: 100,
-    productImage:
+    name: 'Nook set',
+    description: 'Modern collection',
+    price: 100,
+    image:
+      'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
+  },
+  {
+    id: 7,
+    name: 'Living room set',
+    description: 'Wood collection',
+    price: 100,
+    image:
       'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
   },
 ]
