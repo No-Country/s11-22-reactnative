@@ -47,9 +47,8 @@ const SearchScreen = ({ navigation }) => {
           style={{ marginBottom: normalize(22, 'height') }}
         >
           <View
-            className="flex flex-row items-center justify-between w-full"
+            className="w-full"
             style={{
-              paddingHorizontal: normalize(22, 'width'),
               marginBottom: normalize(11, 'height'),
             }}
           >
@@ -59,20 +58,19 @@ const SearchScreen = ({ navigation }) => {
           <View
             className="w-full"
             style={{
-              paddingHorizontal: normalize(22, 'width'),
               marginTop: normalize(22, 'height'),
             }}
           >
             <TitleContent title="Trending now" marginTop={0} />
           </View>
           <Cards products={popularProducts} />
+          <TitleContent title="Shop by room" marginTop={12} />
           <View
             className="w-full"
             style={{
               paddingHorizontal: normalize(22, 'width'),
             }}
           >
-            <TitleContent title="Shop by room" marginTop={12} />
             <RoomsCards />
           </View>
         </View>

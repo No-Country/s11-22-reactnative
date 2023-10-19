@@ -5,7 +5,10 @@ const TitleContent = ({ title, marginTop }) => {
   return (
     <View
       className="flex flex-row items-center justify-between w-full"
-      style={{ marginTop: normalize(marginTop, 'height') }}
+      style={{
+        paddingHorizontal: normalize(22, 'width'),
+        marginTop: normalize(marginTop, 'height'),
+      }}
     >
       <Text
         style={{ fontSize: normalize(18), fontFamily: 'mrt-500' }}

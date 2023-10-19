@@ -1,13 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { productStore } from '../store'
 import { Alert } from 'react-native'
 import { supabase } from '../supabase/initSupabase'
 
 const useProducts = () => {
-  const addProducts = productStore((state) => state.addProducts)
-  const setIsLoading = productStore((state) => state.setIsLoading)
-  const products = productStore((state) => state.products)
-  const [popularProducts, setPopularProducts] = useState([])
+  const { addProducts, setIsLoading, products } = productStore((state) => state)
 
   async function handleFetchProducts() {
     setIsLoading(true)
@@ -39,17 +36,11 @@ const useProducts = () => {
     return filteredProducts
   }
 
-  //fake popular/trending products
-  function getFourthProducts() {
-    setPopularProducts(products?.slice(0, 4))
-  }
-
   useEffect(() => {
     handleFetchProducts()
-    getFourthProducts()
   }, [])
 
-  return { getProductsByName, getProductsByView, popularProducts }
+  return { getProductsByName, getProductsByView }
 }
 
 export default useProducts

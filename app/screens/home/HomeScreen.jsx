@@ -26,8 +26,7 @@ const HomeScreen = () => {
   const { signOut } = useAuth()
   const { image } = useCategory()
   const isLoading = productStore((state) => state.isLoading)
-  const { popularProducts, getProductsByName, getProductsByView } =
-    useProducts()
+  const { getProductsByView } = useProducts()
 
   if (isLoading) return <SpinnerScreen />
 
@@ -74,9 +73,8 @@ const HomeScreen = () => {
         </View>
         <View className="w-full" style={{ marginTop: normalize(30, 'height') }}>
           <View
-            className="flex flex-row items-center justify-between w-full"
+            className="w-full"
             style={{
-              paddingHorizontal: normalize(22, 'width'),
               marginBottom: normalize(11, 'height'),
             }}
           >
@@ -91,19 +89,10 @@ const HomeScreen = () => {
             marginBottom: normalize(67, 'height'),
           }}
         >
-          <View
-            className="w-full"
-            style={{ paddingHorizontal: normalize(22, 'width') }}
-          >
-            <TitleContent title="Most popular" marginTop={0} />
-          </View>
+          <TitleContent title="Most popular" marginTop={0} />
+
           <Cards products={getProductsByView('popular')} />
-          <View
-            className="w-full"
-            style={{ paddingHorizontal: normalize(22, 'width') }}
-          >
-            <TitleContent title="Furniture sets" marginTop={12} />
-          </View>
+          <TitleContent title="Furniture sets" marginTop={12} />
           <Cards products={getProductsByView('set')} />
         </View>
       </ScrollView>
