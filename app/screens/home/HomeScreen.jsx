@@ -29,7 +29,7 @@ const HomeScreen = () => {
   const { popularProducts, getProductsByName } = useProducts()
 
   if (isLoading) return <SpinnerScreen />
-  console.log(popularProducts)
+
   return (
     <SafeAreaView className="flex-1 bg-primary items-center">
       <View

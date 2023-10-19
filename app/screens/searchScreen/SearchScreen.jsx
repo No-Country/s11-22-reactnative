@@ -8,9 +8,10 @@ import {
 import normalize from 'react-native-normalize'
 import { Ionicons } from '@expo/vector-icons'
 import { RoomsCards, SearchBox } from './components'
-import { Cards, MiniCards, TitleContent } from '../../components'
+import { MiniCards, TitleContent } from '../../components'
 import { useCategory } from '../home/hook'
 import { useProducts } from '../../hooks'
+import Cards from '../../components/cards/Cards'
 
 const SearchScreen = ({ navigation }) => {
   const { width } = Dimensions.get('window')
