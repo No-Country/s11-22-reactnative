@@ -64,7 +64,14 @@ const SearchScreen = ({ navigation }) => {
             }}
           >
             <TitleContent title="Trending now" marginTop={0} />
-            <Cards products={popularProducts} />
+          </View>
+          <Cards products={popularProducts} />
+          <View
+            className="w-full"
+            style={{
+              paddingHorizontal: normalize(22, 'width'),
+            }}
+          >
             <TitleContent title="Shop by room" marginTop={12} />
             <RoomsCards />
           </View>

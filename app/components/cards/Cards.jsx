@@ -10,8 +10,8 @@ const Cards = ({ products }) => {
   const addToCart = cartStore((state) => state.addToCart)
 
   return (
-    <ScrollView horizontal>
-      {products?.map((item) => (
+    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      {products?.map((item, index) => (
         <TouchableOpacity
           onPress={() =>
             navigation.navigate('ProductDetailScreen', { itemId: item?.id })
@@ -22,6 +22,9 @@ const Cards = ({ products }) => {
             width: normalize(163),
             height: normalize(240),
             marginBottom: normalize(22, 'height'),
+            marginRight: normalize(22, 'width'),
+            marginTop: normalize(11, 'height'),
+            marginLeft: index === 0 ? normalize(22, 'width') : 0,
           }}
         >
           <Image

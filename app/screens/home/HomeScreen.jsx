@@ -88,13 +88,22 @@ const HomeScreen = () => {
           className="w-full items-center flex-1"
           style={{
             marginTop: normalize(22, 'height'),
-            paddingHorizontal: normalize(22, 'width'),
             marginBottom: normalize(67, 'height'),
           }}
         >
-          <TitleContent title="Most popular" marginTop={0} />
+          <View
+            className="w-full"
+            style={{ paddingHorizontal: normalize(22, 'width') }}
+          >
+            <TitleContent title="Most popular" marginTop={0} />
+          </View>
           <Cards products={getProductsByView('popular')} />
-          <TitleContent title="Furniture sets" marginTop={12} />
+          <View
+            className="w-full"
+            style={{ paddingHorizontal: normalize(22, 'width') }}
+          >
+            <TitleContent title="Furniture sets" marginTop={12} />
+          </View>
           <Cards products={getProductsByView('set')} />
         </View>
       </ScrollView>
