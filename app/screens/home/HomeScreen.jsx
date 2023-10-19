@@ -26,7 +26,8 @@ const HomeScreen = () => {
   const { signOut } = useAuth()
   const { image } = useCategory()
   const isLoading = productStore((state) => state.isLoading)
-  const { popularProducts, getProductsByName } = useProducts()
+  const { popularProducts, getProductsByName, getProductsByView } =
+    useProducts()
 
   if (isLoading) return <SpinnerScreen />
 
@@ -92,9 +93,9 @@ const HomeScreen = () => {
           }}
         >
           <TitleContent title="Most popular" marginTop={0} />
-          <Cards products={popularProducts} />
+          <Cards products={getProductsByView('popular')} />
           <TitleContent title="Furniture sets" marginTop={12} />
-          <Cards products={getProductsByName('set')} />
+          <Cards products={getProductsByView('set')} />
         </View>
       </ScrollView>
     </SafeAreaView>

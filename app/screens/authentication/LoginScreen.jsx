@@ -18,10 +18,10 @@ const LoginScreen = () => {
 
   return (
     <View className="flex-1">
-      <View className={height <= 690 ? 'h-40' : 'h-80'}>
+      <View className={height <= 812 ? 'h-60' : 'h-80'}>
         <Image
           source={require('../../../assets/Log_in.png')}
-          className={`w-full ${height <= 690 ? 'h-60' : 'h-96'} object-cover`}
+          className={`w-full ${height <= 812 ? 'h-70' : 'h-96'} object-cover`}
         />
       </View>
 
@@ -35,7 +35,7 @@ const LoginScreen = () => {
         <SignInOptions />
 
         <Text
-          className={`${height <= 690 ? 'mt-4' : 'mt-8'}`}
+          className={`${height <= 812 ? 'mt-4' : 'mt-8'}`}
           style={{ fontFamily: 'mrt-400' }}
         >
           Dont&#39;t have an account?

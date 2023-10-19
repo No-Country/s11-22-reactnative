@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { productStore } from '../store'
-import DATA from '../utils/fakeData'
+import { Alert } from 'react-native'
+import { supabase } from '../supabase/initSupabase'
 
 const useProducts = () => {
   const addProducts = productStore((state) => state.addProducts)
@@ -8,11 +9,17 @@ const useProducts = () => {
   const products = productStore((state) => state.products)
   const [popularProducts, setPopularProducts] = useState([])
 
-  function handleFetchProducts() {
+  async function handleFetchProducts() {
     setIsLoading(true)
     //supabase function
+    const { data, error } = await supabase.from('product').select('*')
 
-    addProducts(DATA) //ToDo: change DATA for supabase data
+    if (error) {
+      setIsLoading(false)
+      Alert.alert(error)
+    }
+
+    addProducts(data)
     setIsLoading(false)
   }
 
@@ -20,6 +27,14 @@ const useProducts = () => {
   function getProductsByName(word) {
     const filteredProducts = products?.filter((product) =>
       product?.name.toLowerCase().includes(word),
+    )
+    return filteredProducts
+  }
+
+  //filter products by view
+  function getProductsByView(view) {
+    const filteredProducts = products?.filter((product) =>
+      product?.view.toLowerCase().includes(view),
     )
     return filteredProducts
   }
@@ -34,7 +49,7 @@ const useProducts = () => {
     getFourthProducts()
   }, [])
 
-  return { getProductsByName, popularProducts }
+  return { getProductsByName, getProductsByView, popularProducts }
 }
 
 export default useProducts

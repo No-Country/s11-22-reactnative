@@ -1,4 +1,4 @@
-import { Image, TouchableOpacity, View, Text } from 'react-native'
+import { Image, TouchableOpacity, ScrollView, View, Text } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import normalize from 'react-native-normalize'
 import { Ionicons } from '@expo/vector-icons'
@@ -10,23 +10,23 @@ const Cards = ({ products }) => {
   const addToCart = cartStore((state) => state.addToCart)
 
   return (
-    <View className="flex flex-row flex-wrap w-full items-center justify-between">
+    <ScrollView horizontal>
       {products?.map((item) => (
         <TouchableOpacity
           onPress={() =>
             navigation.navigate('ProductDetailScreen', { itemId: item?.id })
           }
-          className="rounded-lg border border-[#CFD1C0] bg-primary p-[0.69vh]"
+          className="rounded-lg border border-[#CFD1C0] bg-primary p-2"
           key={item?.id}
           style={{
             width: normalize(163),
-            height: normalize(220),
+            height: normalize(240),
             marginBottom: normalize(22, 'height'),
           }}
         >
           <Image
             source={{
-              uri: item?.image,
+              uri: item?.image[0],
             }}
             className="w-full object-cover rounded"
             style={{
@@ -46,10 +46,10 @@ const Cards = ({ products }) => {
             </TouchableOpacity>
           </View>
           <Text
-            className="font-extralight"
+            className="font-extralight pb-2"
             style={{ fontSize: normalize(10), fontFamily: 'mrt-200' }}
           >
-            {item?.description}
+            {item?.collection} collection
           </Text>
           <View className="flex flex-row w-full items-center justify-between">
             <Text style={{ fontSize: normalize(14), fontFamily: 'mrt-400' }}>
@@ -65,7 +65,7 @@ const Cards = ({ products }) => {
           </View>
         </TouchableOpacity>
       ))}
-    </View>
+    </ScrollView>
   )
 }
 
