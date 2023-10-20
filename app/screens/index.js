@@ -7,3 +7,4 @@ export { default as ProductDetailScreen } from './productDetail/ProductDetailScr
 export { default as CartScreen } from './cart/CartScreen'
 export { default as PaymentScreen } from './paymentScreen/PaymentScreen'
 export { default as OrderTracking } from './orderTracking/OrderTracking'
+export { default as SearchResultsScreen } from './searchResultsScreen/SearchResultsScreen'
