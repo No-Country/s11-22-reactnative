@@ -3,6 +3,7 @@ import { create } from 'zustand'
 const productStore = create((set) => ({
   products: [],
   isLoading: false,
+  searchedProducts: [],
   addProducts: (products) => {
     set({ products })
   },
@@ -11,6 +12,9 @@ const productStore = create((set) => ({
   },
   setIsLoading: (isLoading) => {
     set({ isLoading })
+  },
+  setSearchedProducts: (searchedProducts) => {
+    set({ searchedProducts })
   },
 }))
 

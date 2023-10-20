@@ -1,43 +1,26 @@
-import {
-  View,
-  SafeAreaView,
-  Dimensions,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native'
+import { View, SafeAreaView, ScrollView } from 'react-native'
 import normalize from 'react-native-normalize'
-import { Ionicons } from '@expo/vector-icons'
-import { RoomsCards, SearchBox } from './components'
-import { CartIcon, MiniCards, TitleContent } from '../../components'
+import { RoomsCards } from './components'
+import { MiniCards, SearchBox, TitleContent } from '../../components'
 import { useCategory } from '../home/hook'
 import { useProducts } from '../../hooks'
 import Cards from '../../components/cards/Cards'
 
-const SearchScreen = ({ navigation }) => {
-  const { width } = Dimensions.get('window')
-  const SPACING = (width * 0.12) / 2
+const SearchScreen = () => {
   const { image } = useCategory() //ToDo: change for styles
   const { getProductsByView } = useProducts()
 
   return (
     <SafeAreaView className="flex-1 bg-primary w-full">
       <View
-        className="flex flex-row w-full items-center justify-between"
+        className="w-full"
         style={{
           marginBottom: normalize(23, 'height'),
-          paddingHorizontal: SPACING,
+          paddingHorizontal: normalize(22, 'width'),
           marginTop: normalize(44, 'height'),
         }}
       >
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons name="chevron-back-sharp" size={38} color="#114949" />
-        </TouchableOpacity>
         <SearchBox />
-        <CartIcon
-          size={38}
-          handlePress={() => navigation.navigate('CartScreen')}
-          showQuantity={true}
-        />
       </View>
       <ScrollView
         showsVerticalScrollIndicator={false}

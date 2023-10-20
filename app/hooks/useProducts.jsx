@@ -1,10 +1,15 @@
-import { useEffect } from 'react'
-import { productStore } from '../store'
+import { useEffect, useState } from 'react'
 import { Alert } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import Fuse from 'fuse.js'
+import { productStore } from '../store'
 import { supabase } from '../supabase/initSupabase'
 
 const useProducts = () => {
-  const { addProducts, setIsLoading, products } = productStore((state) => state)
+  const { addProducts, setSearchedProducts, products, setIsLoading } =
+    productStore((state) => state)
+  const [search, setSearch] = useState('')
+  const { navigate } = useNavigation()
 
   async function handleFetchProducts() {
     setIsLoading(true)
@@ -21,11 +26,30 @@ const useProducts = () => {
   }
 
   //filter products by name
-  function getProductsByName(word) {
-    const filteredProducts = products?.filter((product) =>
-      product?.name.toLowerCase().includes(word),
-    )
-    return filteredProducts
+  function getProductsByName() {
+    setIsLoading(true)
+
+    const options = {
+      keys: ['name'],
+      findAllMatches: true,
+      threshold: 0.6,
+    }
+
+    /* used for fuzzy searching. It takes two arguments: the `products` array, which
+    is the data to be searched, and the `options` object, which specifies the search configuration. */
+    const fuse = new Fuse(products, options)
+    const result = fuse.search(search)
+
+    if (result.length === 0) {
+      setSearchedProducts([])
+      setIsLoading(false)
+    }
+    const filteredProducts = result?.map((item) => item.item)
+
+    setSearch('')
+    navigate('SearchResultsScreen')
+    setSearchedProducts(filteredProducts)
+    setIsLoading(false)
   }
 
   //filter products by view
@@ -37,10 +61,10 @@ const useProducts = () => {
   }
 
   useEffect(() => {
-    handleFetchProducts()
-  }, [])
+    if (products.length === 0) handleFetchProducts()
+  }, [products])
 
-  return { getProductsByName, getProductsByView }
+  return { getProductsByView, search, setSearch, getProductsByName }
 }
 
 export default useProducts

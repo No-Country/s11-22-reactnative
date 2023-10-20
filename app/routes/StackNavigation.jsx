@@ -7,6 +7,7 @@ import {
   ProductDetailScreen,
   PaymentScreen,
   OrderTracking,
+  SearchResultsScreen,
 } from '../screens'
 import TabNavigation from './TabNavigation'
 
@@ -80,6 +81,13 @@ const StackNavigation = () => {
       <Stack.Screen
         name="OrderTracking"
         component={OrderTracking}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="SearchResultsScreen"
+        component={SearchResultsScreen}
         options={{
           headerShown: false,
         }}
