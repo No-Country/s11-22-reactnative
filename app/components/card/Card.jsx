@@ -27,7 +27,7 @@ const Card = ({ item, index, marginRight, leftSpace = true }) => {
     >
       <Image
         source={{
-          uri: item?.image[0],
+          uri: item?.images[0],
         }}
         className="w-full object-cover rounded"
         style={{
