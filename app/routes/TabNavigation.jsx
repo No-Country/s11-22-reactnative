@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Dimensions, Image } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import normalize from 'react-native-normalize'
 import Svg, { Path } from 'react-native-svg'
-import { CartScreen, HomeScreen } from '../screens'
+import { HomeScreen, ProfileScreen } from '../screens'
 
 const Tab = createBottomTabNavigator()
 
@@ -52,7 +52,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="cart"
-        component={CartScreen}
+        component={ProfileScreen}
         options={{
           headerShown: false,
           tabBarLabel: () => <Text style={styles.text}>Catalog</Text>,
@@ -89,7 +89,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="cart2"
-        component={CartScreen}
+        component={ProfileScreen}
         options={{
           headerShown: false,
           tabBarLabel: () => <Text style={styles.text}>Favorites</Text>,
@@ -103,8 +103,8 @@ const TabNavigation = () => {
         }}
       />
       <Tab.Screen
-        name="cart3"
-        component={CartScreen}
+        name="Profile"
+        component={ProfileScreen}
         options={{
           headerShown: false,
           tabBarLabel: () => <Text style={styles.text}>Profile</Text>,

@@ -4,10 +4,13 @@ import { useNavigation } from '@react-navigation/native'
 import Fuse from 'fuse.js'
 import { productStore } from '../store'
 import { supabase } from '../supabase/initSupabase'
+import { productAdapter } from '../adapters/productAdapter'
 
 const useProducts = () => {
-  const { addProducts, setSearchedProducts, products, setIsLoading } =
-    productStore((state) => state)
+  const addProducts = productStore((state) => state.addProducts)
+  const setSearchedProducts = productStore((state) => state.setSearchedProducts)
+  const products = productStore((state) => state.products)
+  const setIsLoading = productStore((state) => state.setIsLoading)
   const [search, setSearch] = useState('')
   const { navigate } = useNavigation()
 
@@ -21,7 +24,7 @@ const useProducts = () => {
       Alert.alert(error)
     }
 
-    addProducts(data)
+    addProducts(productAdapter(data))
     setIsLoading(false)
   }
 

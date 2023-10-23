@@ -6,7 +6,8 @@ import { productStore } from '../../store'
 import Card from '../../components/card/Card'
 
 const SearchResultsScreen = () => {
-  const { searchedProducts, isLoading } = productStore((state) => state)
+  const searchedProducts = productStore((state) => state.searchedProducts)
+  const isLoading = productStore((state) => state.isLoading)
 
   if (isLoading) return <SpinnerScreen />
 

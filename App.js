@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 import { StackNavigation } from './app/routes'
-import { useFont } from './app/screens/useFont'
+import { useFont } from './app/hooks'
 
 SplashScreen.preventAutoHideAsync()
 

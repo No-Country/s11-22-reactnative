@@ -4,7 +4,7 @@ import { Alert } from 'react-native'
 
 import { userStore } from '../../../store'
 import { supabase } from '../../../supabase/initSupabase'
-import { loginAdapter } from '../adapters'
+import { loginAdapter } from '../../../adapters'
 
 const useAuth = () => {
   const navigation = useNavigation()

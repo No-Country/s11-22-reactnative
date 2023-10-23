@@ -33,7 +33,7 @@ const SearchBox = ({ handlePress }) => {
           }}
           value={search}
           onChangeText={setSearch}
-          onSubmitEditing={getProductsByName}
+          onSubmitEditing={() => getProductsByName()}
         />
       </View>
       <CartIcon

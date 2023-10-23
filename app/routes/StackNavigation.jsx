@@ -8,6 +8,7 @@ import {
   PaymentScreen,
   OrderTracking,
   SearchResultsScreen,
+  CartScreen,
 } from '../screens'
 import TabNavigation from './TabNavigation'
 
@@ -65,7 +66,7 @@ const StackNavigation = () => {
         }}
       />
       <Stack.Screen
-        name="CartScreen"
+        name="ProfileScreen"
         component={TabNavigation}
         options={{
           headerShown: false,
@@ -88,6 +89,13 @@ const StackNavigation = () => {
       <Stack.Screen
         name="SearchResultsScreen"
         component={SearchResultsScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="CartScreen"
+        component={CartScreen}
         options={{
           headerShown: false,
         }}

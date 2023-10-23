@@ -9,7 +9,6 @@ import normalize from 'react-native-normalize'
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { CarouselScreen } from './components'
-import { useAuth } from '../../screens/authentication/hooks'
 import {
   CartIcon,
   MiniCards,
@@ -23,7 +22,6 @@ import Cards from '../../components/cards/Cards'
 
 const HomeScreen = () => {
   const navigation = useNavigation()
-  const { signOut } = useAuth()
   const { image } = useCategory()
   const isLoading = productStore((state) => state.isLoading)
   const { getProductsByView } = useProducts()
@@ -40,9 +38,12 @@ const HomeScreen = () => {
           marginBottom: normalize(44, 'height'),
         }}
       >
+        <TouchableOpacity>
+          <Ionicons name="menu-sharp" size={35} color="#114949" />
+        </TouchableOpacity>
         <TouchableOpacity
           className="pl-1 h-11 rounded-lg bg-secondary flex flex-row items-center gap-1"
-          style={{ width: normalize(278) }}
+          style={{ width: normalize(267) }}
           onPress={() => navigation.navigate('SearchScreen')}
         >
           <Ionicons name="search" size={24} color="#114949" />
@@ -58,9 +59,6 @@ const HomeScreen = () => {
           handlePress={() => navigation.navigate('CartScreen')}
           showQuantity={true}
         />
-        <TouchableOpacity onPress={signOut}>
-          <Ionicons name="log-out-outline" size={38} color="black" />
-        </TouchableOpacity>
       </View>
       <ScrollView showsVerticalScrollIndicator={false} className="w-full">
         <View

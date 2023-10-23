@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 
-export const useFont = () => {
+const useFont = () => {
   const [isLoaded] = useFonts({
     'mrt-200': require('../../assets/fonts/Montserrat/Montserrat-ExtraLight.ttf'),
     'mrt-300': require('../../assets/fonts/Montserrat/Montserrat-Light.ttf'),
@@ -21,3 +21,5 @@ export const useFont = () => {
 
   return { isLoaded, handleOnLayout }
 }
+
+export default useFont
