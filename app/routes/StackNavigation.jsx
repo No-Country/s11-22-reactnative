@@ -45,13 +45,6 @@ const StackNavigation = () => {
         }}
       />
       <Stack.Screen
-        name="HomeScreen"
-        component={TabNavigation}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
         name="SearchScreen"
         component={SearchScreen}
         options={{
@@ -96,6 +89,13 @@ const StackNavigation = () => {
       <Stack.Screen
         name="CartScreen"
         component={CartScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="HomeScreen"
+        component={TabNavigation}
         options={{
           headerShown: false,
         }}

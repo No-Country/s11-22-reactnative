@@ -38,7 +38,7 @@ const HomeScreen = () => {
           marginBottom: normalize(44, 'height'),
         }}
       >
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
           <Ionicons name="menu-sharp" size={35} color="#114949" />
         </TouchableOpacity>
         <TouchableOpacity

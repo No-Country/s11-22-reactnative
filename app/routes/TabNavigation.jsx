@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 import normalize from 'react-native-normalize'
 import Svg, { Path } from 'react-native-svg'
 import { HomeScreen, ProfileScreen } from '../screens'
+import MyDrawer from './DrawerNavigation'
 
 const Tab = createBottomTabNavigator()
 
@@ -36,8 +37,8 @@ const TabNavigation = () => {
       }}
     >
       <Tab.Screen
-        name="home"
-        component={HomeScreen}
+        name="HomeTab"
+        component={MyDrawer}
         options={{
           headerShown: false,
           tabBarLabel: () => <Text style={styles.text}>Home</Text>,
