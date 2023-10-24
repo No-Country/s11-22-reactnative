@@ -34,15 +34,19 @@ const HomeScreen = () => {
         className="w-full flex-row justify-between items-center"
         style={{
           marginTop: normalize(44, 'height'),
-          paddingHorizontal: normalize(22, 'width'),
+          paddingLeft: normalize(12, 'width'),
           marginBottom: normalize(44, 'height'),
+          paddingRight: normalize(22, 'width'),
         }}
       >
-        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+        <TouchableOpacity
+          className="mr-2"
+          onPress={() => navigation.openDrawer()}
+        >
           <Ionicons name="menu-sharp" size={35} color="#114949" />
         </TouchableOpacity>
         <TouchableOpacity
-          className="pl-1 h-11 rounded-lg bg-secondary flex flex-row items-center gap-1"
+          className="pl-1 h-11 rounded-lg bg-secondary flex flex-row items-center gap-1 mr-1"
           style={{ width: normalize(267) }}
           onPress={() => navigation.navigate('SearchScreen')}
         >

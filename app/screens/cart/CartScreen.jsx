@@ -20,7 +20,7 @@ const CartScreen = () => {
   const SPACING = (width * 0.12) / 2
 
   return (
-    <SafeAreaView className="flex-1 bg-white w-full">
+    <SafeAreaView className="flex-1 bg-[#E5E0D8] w-full">
       <View className="w-full" style={{ paddingHorizontal: SPACING }}>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
@@ -50,7 +50,7 @@ const CartScreen = () => {
             </Text>
           </View>
           <TouchableOpacity
-            className="w-full h-11 rounded-lg flex items-center justify-center bg-[#d9d9d9]"
+            className="w-full h-11 rounded-lg flex items-center justify-center bg-[#809671]"
             style={{
               marginTop: normalize(44, 'height'),
               marginBottom: normalize(22, 'height'),
@@ -59,7 +59,7 @@ const CartScreen = () => {
           >
             <Text
               style={{ fontSize: normalize(20) }}
-              className="text-black font-light leading-[1.31vh] tracking-tight"
+              className="text-white font-light leading-[1.31vh] tracking-tight"
             >
               Checkout
             </Text>

@@ -13,6 +13,7 @@ import { ProductInfo } from './components'
 import { cartStore } from '../../store'
 import DATA from '../../utils/fakeData'
 import { CartIcon } from '../../components'
+import { useProducts } from '../../hooks'
 
 const ProductDetailScreen = ({ route, navigation }) => {
   const SCREEN_HEIGHT = Dimensions.get('window').height
@@ -22,35 +23,40 @@ const ProductDetailScreen = ({ route, navigation }) => {
   const [product, setProduct] = useState({})
   const addProduct = cartStore((state) => state.addToCart)
   const emptyCart = cartStore((state) => state.emptyCart)
+  const { getProductById } = useProducts()
 
   useEffect(() => {
-    const product = DATA.find((product) => product.id === itemId)
+    const product = getProductById(itemId)
     setProduct(product)
   }, [itemId])
 
   return (
-    <SafeAreaView className="flex-1 bg-white w-full">
+    <SafeAreaView className="flex-1 bg-[#E5E0D8] w-full">
       <View className="w-full" style={{ paddingHorizontal: SPACING }}>
         <View
-          className="relative self-center w-full"
+          className="w-full flex flex-row items-center justify-between"
           style={{
-            height: SCREEN_HEIGHT / 2.5,
-            marginTop: normalize(44, 'height'),
+            marginTop: normalize(22, 'height'),
           }}
         >
-          <View className="absolute top-0 left-0 w-full flex flex-row items-center justify-between z-10">
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <Ionicons name="ios-arrow-back-outline" size={30} color="black" />
-            </TouchableOpacity>
-            <CartIcon
-              size={30}
-              handlePress={() => navigation.navigate('CartScreen')}
-              showQuantity={true}
-            />
-          </View>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Ionicons name="ios-arrow-back-outline" size={30} color="black" />
+          </TouchableOpacity>
+          <CartIcon
+            size={30}
+            handlePress={() => navigation.navigate('CartScreen')}
+            showQuantity={true}
+          />
+        </View>
+        <View
+          style={{
+            height: SCREEN_HEIGHT / 2.5,
+            marginTop: normalize(11, 'height'),
+          }}
+        >
           <Image
             source={{
-              uri: 'https://www.todohostingweb.com/wp-content/uploads/2013/03/imagenes-l%C3%ADbres-de-derechos-de-autor_min.jpg',
+              uri: product[0]?.images[0],
             }}
             className="object-cover w-full h-full"
           />
@@ -59,29 +65,29 @@ const ProductDetailScreen = ({ route, navigation }) => {
           className="w-full flex flex-col"
           style={{ marginTop: normalize(22, 'height') }}
         >
-          <ProductInfo product={product} />
+          <ProductInfo product={product[0]} />
           <TouchableOpacity
-            className="w-full h-11 rounded-lg bg-[#d9d9d9] flex items-center justify-center"
+            className="w-full h-11 rounded-lg bg-[#809671] flex items-center justify-center"
             style={{ marginTop: normalize(44, 'height') }}
           >
             <Text
-              className="text-black font-light leading-[1.31vh] tracking-tight"
+              className="text-white font-light leading-[1.31vh] tracking-tight"
               style={{ fontSize: normalize(20) }}
               onPress={() => addProduct(product)}
             >
-              Add to cart
+              Buy now
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            className="w-full h-11 rounded-lg bg-[#d9d9d9] flex items-center justify-center"
+            className="w-full h-11 rounded-lg bg-[#CFD1C0] flex items-center justify-center"
             style={{ marginTop: normalize(22, 'height') }}
             onPress={() => emptyCart()}
           >
             <Text
-              className="text-black font-light leading-[1.31vh] tracking-tight"
+              className="text-[#607750] font-light leading-[1.31vh] tracking-tight"
               style={{ fontSize: normalize(20) }}
             >
-              Try in your place
+              Add to cart
             </Text>
           </TouchableOpacity>
         </View>

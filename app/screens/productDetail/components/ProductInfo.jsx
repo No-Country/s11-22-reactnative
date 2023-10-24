@@ -29,7 +29,7 @@ const ProductInfo = ({ product }) => {
           style={{ fontSize: normalize(20) }}
           className="text-black font-medium leading-[1.31vh] tracking-tight"
         >
-          {product?.productName}
+          {product?.name}
         </Text>
         <View className="flex flex-row items-center justify-center gap-2">
           <TouchableOpacity>
@@ -41,23 +41,17 @@ const ProductInfo = ({ product }) => {
         </View>
       </View>
       <Text
-        className="text-black font-light leading-[1.31vh] tracking-tight"
-        style={{ fontSize: normalize(16) }}
-      >
-        Size
-      </Text>
-      <Text
-        className="text-black font-medium leading-[1.31vh] tracking-tight"
+        className="text-[#114949] font-medium leading-[1.31vh] tracking-tight"
         style={{
           fontSize: normalize(20),
           marginTop: normalize(11, 'height'),
         }}
       >
-        {product?.productPrice}
+        ${product?.price}
       </Text>
       <View
-        className="flex flex-row w-full items-center justify-start gap-6"
-        style={{ marginTop: normalize(22, 'height') }}
+        className="flex flex-row w-full items-center justify-start gap-2"
+        style={{ marginTop: normalize(11, 'height') }}
       >
         <Text
           className="text-black font-light leading-[1.31vh] tracking-tight"
@@ -68,14 +62,14 @@ const ProductInfo = ({ product }) => {
         <FlatList
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          data={COLORS}
+          data={product?.color}
           renderItem={({ item }) => (
             <TouchableOpacity
-              className="rounded-lg  mr-3"
+              className="rounded-2xl  mr-3"
               style={{
                 width: normalize(44),
                 height: normalize(44),
-                backgroundColor: item.color,
+                backgroundColor: item,
               }}
             ></TouchableOpacity>
           )}

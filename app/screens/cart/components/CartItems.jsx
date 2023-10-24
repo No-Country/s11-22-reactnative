@@ -8,9 +8,11 @@ const CartItems = () => {
   const addToCart = cartStore((state) => state.addToCart)
   const removeProduct = cartStore((state) => state.removeProductFromCart)
 
+  console.log(products)
+
   return (
     <View className="w-full" style={{ marginTop: normalize(31, 'height') }}>
-      {products?.map((item) => (
+      {products[0]?.map((item) => (
         <View
           className="flex flex-row w-full items-start justify-start gap-5"
           style={{
@@ -20,7 +22,7 @@ const CartItems = () => {
           key={item?.id}
         >
           <Image
-            source={{ uri: item?.productImage }}
+            source={{ uri: item?.images[0] }}
             className="rounded-lg object-cover h-full"
             style={{ width: normalize(126) }}
           />
@@ -29,11 +31,11 @@ const CartItems = () => {
             style={{ width: normalize(195) }}
           >
             <View>
-              <Text>{item?.productName}</Text>
+              <Text>{item?.name}</Text>
               <Text>{item?.productType}</Text>
             </View>
             <View className="flex flex-row w-full items-center justify-between">
-              <Text>${item?.productPrice}USD</Text>
+              <Text>${item?.price}USD</Text>
               <View className="flex flex-row items-center justify-center gap-3">
                 <TouchableOpacity onPress={() => removeProduct(item?.id)}>
                   <Ionicons name="remove-outline" size={24} color="black" />

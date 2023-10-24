@@ -63,11 +63,22 @@ const useProducts = () => {
     return filteredProducts
   }
 
+  function getProductById(id) {
+    const filteredProduct = products?.filter((product) => product?.id === id)
+    return filteredProduct
+  }
+
   useEffect(() => {
     if (products.length === 0) handleFetchProducts()
   }, [products])
 
-  return { getProductsByView, search, setSearch, getProductsByName }
+  return {
+    getProductsByView,
+    search,
+    setSearch,
+    getProductsByName,
+    getProductById,
+  }
 }
 
 export default useProducts
