@@ -57,7 +57,7 @@ const LoginScreen = () => {
             marginTop: normalize(33, 'height'),
           }}
         >
-          Dont&#39;t have an account?
+          Don&#39;t have an account?
           <Link to="/SignUpScreen">
             <Text style={{ fontFamily: 'mrt-600' }}> Sign up</Text>
           </Link>
