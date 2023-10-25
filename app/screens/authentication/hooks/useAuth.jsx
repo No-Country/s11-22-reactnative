@@ -5,6 +5,7 @@ import { Alert } from 'react-native'
 import { userStore } from '../../../store'
 import { supabase } from '../../../supabase/initSupabase'
 import { loginAdapter } from '../../../adapters'
+import { useUser } from '@supabase/auth-helpers-react'
 
 const useAuth = () => {
   const navigation = useNavigation()
@@ -37,7 +38,8 @@ const useAuth = () => {
 
     // Adapt data to store it in the store.
     const adaptedUserData = loginAdapter(data)
-    addUserInfo(adaptedUserData)
+    const clientData = getClientById(adaptedUserData.id)
+    addUserInfo(clientData)
     navigation.navigate('HomeScreen')
     setIsLoading(false)
 
@@ -87,6 +89,20 @@ const useAuth = () => {
     navigation.navigate('LoginScreen')
   }
 
+  async function getClientById(id) {
+    const user = useUser()
+    const idFounded = user.filter((user) => user.id === id)
+
+    const { data, error } = await supabase
+      .from('clients')
+      .select()
+      .eq('user_id', idFounded)
+
+    if (error) return Alert.alert(error.message)
+
+    return data
+  }
+
   return {
     name,
     setName,
@@ -98,6 +114,7 @@ const useAuth = () => {
     signup,
     signOut,
     forgotPassword,
+    getClientById,
   }
 }
 

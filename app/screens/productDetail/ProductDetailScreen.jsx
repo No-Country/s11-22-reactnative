@@ -30,6 +30,8 @@ const ProductDetailScreen = ({ route, navigation }) => {
     setProduct(product)
   }, [itemId])
 
+  console.log(product[0])
+
   return (
     <SafeAreaView className="flex-1 bg-[#E5E0D8] w-full">
       <View className="w-full" style={{ paddingHorizontal: SPACING }}>
@@ -69,11 +71,11 @@ const ProductDetailScreen = ({ route, navigation }) => {
           <TouchableOpacity
             className="w-full h-11 rounded-lg bg-[#809671] flex items-center justify-center"
             style={{ marginTop: normalize(44, 'height') }}
+            onPress={() => emptyCart()}
           >
             <Text
               className="text-white font-light leading-[1.31vh] tracking-tight"
               style={{ fontSize: normalize(20) }}
-              onPress={() => addProduct(product)}
             >
               Buy now
             </Text>
@@ -81,7 +83,7 @@ const ProductDetailScreen = ({ route, navigation }) => {
           <TouchableOpacity
             className="w-full h-11 rounded-lg bg-[#CFD1C0] flex items-center justify-center"
             style={{ marginTop: normalize(22, 'height') }}
-            onPress={() => emptyCart()}
+            onPress={() => addProduct(product[0])}
           >
             <Text
               className="text-[#607750] font-light leading-[1.31vh] tracking-tight"

@@ -4,7 +4,7 @@ multiplying the product's quantity by its price and adding it to an accumulator.
 The final result is returned as a string in the format of "$X USD */
 export function totalAmount(products) {
   const totalAmount = products.reduce(
-    (acc, product) => acc + product.productQuantity * product.productPrice,
+    (acc, product) => acc + product.productQuantity * product.price,
     0,
   )
   return `$${totalAmount} USD`

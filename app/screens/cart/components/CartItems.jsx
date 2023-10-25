@@ -12,7 +12,7 @@ const CartItems = () => {
 
   return (
     <View className="w-full" style={{ marginTop: normalize(31, 'height') }}>
-      {products[0]?.map((item) => (
+      {products?.map((item) => (
         <View
           className="flex flex-row w-full items-start justify-start gap-5"
           style={{
@@ -28,7 +28,7 @@ const CartItems = () => {
           />
           <View
             className="flex flex-col justify-between h-full"
-            style={{ width: normalize(195) }}
+            style={{ width: normalize(185) }}
           >
             <View>
               <Text>{item?.name}</Text>
