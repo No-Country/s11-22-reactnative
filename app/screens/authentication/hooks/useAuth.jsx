@@ -38,7 +38,7 @@ const useAuth = () => {
 
     // Adapt data to store it in the store.
     const adaptedUserData = loginAdapter(data)
-    const clientData = getClientById(adaptedUserData.id)
+    const clientData = getClientById(adaptedUserData?.id)
     addUserInfo(clientData)
     navigation.navigate('HomeScreen')
     setIsLoading(false)
@@ -97,7 +97,7 @@ const useAuth = () => {
       .from('clients')
       .select()
       .eq('user_id', idFounded)
-
+    console.log(data)
     if (error) return Alert.alert(error.message)
 
     return data
@@ -114,7 +114,6 @@ const useAuth = () => {
     signup,
     signOut,
     forgotPassword,
-    getClientById,
   }
 }
 

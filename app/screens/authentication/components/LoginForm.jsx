@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from '@react-navigation/native'
 import { TextInput, Text, TouchableOpacity, View } from 'react-native'
 import { Entypo } from '@expo/vector-icons'
+import normalize from 'react-native-normalize'
 import { useAuth } from '../hooks'
 
 const LoginForm = () => {
@@ -14,21 +15,44 @@ const LoginForm = () => {
 
   return (
     <>
+      <Text
+        className="text-left ml-2 font-normal"
+        style={{ fontFamily: 'mrt-400', fontSize: normalize(16) }}
+      >
+        Email
+      </Text>
       <TextInput
-        placeholder="Email"
+        placeholder="loomis.b@gmail.com"
         keyboardType="email-address"
-        className="w-full bg-[#CFD1C0] rounded-lg py-4 px-4 my-4"
-        style={{ fontFamily: 'mrt-400' }}
+        className="w-full bg-secondary rounded-lg px-2"
+        style={{
+          fontFamily: 'mrt-400',
+          fontSize: normalize(16),
+          height: normalize(44),
+        }}
         value={email}
         onChangeText={setEmail}
       />
-
-      <View className="flex-row items-center justify-center my-6">
+      <Text
+        className="text-left ml-2 font-normal"
+        style={{
+          fontFamily: 'mrt-400',
+          fontSize: normalize(16),
+          marginTop: normalize(11, 'height'),
+        }}
+      >
+        Password
+      </Text>
+      <View className="flex-row items-center justify-center">
         <TextInput
-          placeholder="Password"
+          placeholder="Minimum 8 characters"
           secureTextEntry={!showPassword}
-          className="bg-[#CFD1C0] w-full rounded-lg py-4 pl-4 pr-16"
-          style={{ fontFamily: 'mrt-400' }}
+          className="bg-[#CFD1C0] w-full rounded-lg px-2"
+          style={{
+            fontFamily: 'mrt-400',
+            fontSize: normalize(16),
+            height: normalize(44),
+          }}
           value={password}
           onChangeText={setPassword}
         />
@@ -37,26 +61,33 @@ const LoginForm = () => {
           className="absolute right-5"
         >
           {showPassword ? (
-            <Entypo name="eye" size={24} color="black" />
+            <Entypo name="eye" size={24} color="#114949" />
           ) : (
-            <Entypo name="eye-with-line" size={24} color="black" />
+            <Entypo name="eye-with-line" size={24} color="#114949" />
           )}
         </TouchableOpacity>
       </View>
 
-      <View className="w-full mb-8 items-end">
+      <View className="w-full items-end">
         <Link to="/ForgotPasswordScreen">
-          <Text className="text-lg" style={{ fontFamily: 'mrt-400' }}>
+          <Text
+            className="font-normal"
+            style={{ fontFamily: 'mrt-400', fontSize: normalize(14) }}
+          >
             Forgot password?
           </Text>
         </Link>
       </View>
 
       <TouchableOpacity
-        className="w-full rounded-lg bg-[#809671] flex items-center justify-center py-3"
+        className="w-full rounded-xl bg-[#809671] flex items-center justify-center"
+        style={{ height: normalize(55), marginTop: normalize(22, 'height') }}
         onPress={login}
       >
-        <Text className="text-2xl text-white" style={{ fontFamily: 'mrt-400' }}>
+        <Text
+          className="text-white"
+          style={{ fontFamily: 'mrt-400', fontSize: normalize(20) }}
+        >
           Log In
         </Text>
       </TouchableOpacity>

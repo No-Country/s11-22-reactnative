@@ -11,14 +11,12 @@ import normalize from 'react-native-normalize'
 import { Ionicons } from '@expo/vector-icons'
 import { ProductInfo } from './components'
 import { cartStore } from '../../store'
-import DATA from '../../utils/fakeData'
 import { CartIcon } from '../../components'
 import { useProducts } from '../../hooks'
 
 const ProductDetailScreen = ({ route, navigation }) => {
-  const SCREEN_HEIGHT = Dimensions.get('window').height
-  const SCREEN_WIDTH = Dimensions.get('window').width
-  const SPACING = (SCREEN_WIDTH * 0.12) / 2
+  const { width, height } = Dimensions.get('window')
+  const SPACING = (width * 0.12) / 2
   const { itemId } = route.params
   const [product, setProduct] = useState({})
   const addProduct = cartStore((state) => state.addToCart)
@@ -29,8 +27,6 @@ const ProductDetailScreen = ({ route, navigation }) => {
     const product = getProductById(itemId)
     setProduct(product)
   }, [itemId])
-
-  console.log(product[0])
 
   return (
     <SafeAreaView className="flex-1 bg-[#E5E0D8] w-full">
@@ -52,7 +48,7 @@ const ProductDetailScreen = ({ route, navigation }) => {
         </View>
         <View
           style={{
-            height: SCREEN_HEIGHT / 2.5,
+            height: height / 2.5,
             marginTop: normalize(11, 'height'),
           }}
         >
