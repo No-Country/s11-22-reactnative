@@ -18,12 +18,13 @@ const HeadTitle = ({ title }) => {
         onPress={() => navigation.goBack()}
         className="absolute left-0"
       >
-        <Ionicons name="ios-arrow-back-outline" size={30} color="black" />
+        <Ionicons name="chevron-back" size={30} color="#114949" />
       </TouchableOpacity>
       <Text
         className="font-medium text-black leading-[1.31vh] tracking-tight"
         style={{
           fontSize: normalize(20),
+          fontFamily: 'mrt-500',
         }}
       >
         {title}

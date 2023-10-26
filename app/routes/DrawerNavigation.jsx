@@ -30,7 +30,7 @@ function MyDrawer() {
       <Drawer.Screen name="Notifications" component={HomeScreen} />
       <Drawer.Screen name="Orders" component={ProfileScreen} />
       <Drawer.Screen name="Special offers" component={ProfileScreen} />
-      <Drawer.Screen name="HistoryScreen" component={ProfileScreen} />
+      <Drawer.Screen name="History" component={ProfileScreen} />
     </Drawer.Navigator>
   )
 }

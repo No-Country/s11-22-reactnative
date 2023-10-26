@@ -17,7 +17,7 @@ const CartScreen = () => {
   const products = cartStore((state) => state.cart.products)
   const emptyCart = cartStore((state) => state.emptyCart)
   const navigation = useNavigation()
-  const { width } = Dimensions.get('window')
+  const { width, height } = Dimensions.get('window')
   const SPACING = (width * 0.12) / 2
 
   return (
@@ -41,41 +41,44 @@ const CartScreen = () => {
             </Text>
           </TouchableOpacity>
         </View>
-        <ScrollView showsVerticalScrollIndicator={false} className="w-full">
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          className="w-full"
+          style={{ height: (height / 2.5) * 1.6 }}
+        >
           <CartItems />
-          <View
-            className="flex flex-row w-full items-center justify-between"
-            style={{ marginTop: normalize(44, 'height') }}
-          >
-            <Text
-              className="text-black font-light leading-[1.31vh] tracking-tight"
-              style={{ fontSize: normalize(16) }}
-            >
-              Total
-            </Text>
-            <Text
-              className="text-black font-normal leading-[1.31vh] tracking-tight"
-              style={{ fontSize: normalize(18) }}
-            >
-              {totalAmount(products)}
-            </Text>
-          </View>
-          <TouchableOpacity
-            className="w-full h-11 rounded-lg flex items-center justify-center bg-[#809671]"
-            style={{
-              marginTop: normalize(44, 'height'),
-              marginBottom: normalize(22, 'height'),
-            }}
-            onPress={() => navigation.navigate('PaymentScreen')}
-          >
-            <Text
-              style={{ fontSize: normalize(20) }}
-              className="text-white font-light leading-[1.31vh] tracking-tight"
-            >
-              Checkout
-            </Text>
-          </TouchableOpacity>
         </ScrollView>
+        <View
+          className="flex flex-row w-full items-center justify-between"
+          style={{ marginTop: normalize(11, 'height') }}
+        >
+          <Text
+            className="text-black font-normal leading-[1.31vh] tracking-tight"
+            style={{ fontSize: normalize(18), fontFamily: 'mrt-400' }}
+          >
+            Total
+          </Text>
+          <Text
+            className="text-primary font-medium leading-[1.31vh] tracking-tight"
+            style={{ fontSize: normalize(18), fontFamily: 'mrt-500' }}
+          >
+            {totalAmount(products)}
+          </Text>
+        </View>
+        <TouchableOpacity
+          className="w-full h-11 rounded-lg flex items-center justify-center bg-[#809671]"
+          style={{
+            marginTop: normalize(44, 'height'),
+          }}
+          onPress={() => navigation.navigate('PaymentScreen')}
+        >
+          <Text
+            style={{ fontSize: normalize(18), fontFamily: 'mrt-400' }}
+            className="text-white font-normal leading-[1.31vh] tracking-tight"
+          >
+            Checkout
+          </Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   )

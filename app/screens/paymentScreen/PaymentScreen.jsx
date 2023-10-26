@@ -1,58 +1,51 @@
-import {
-  View,
-  Text,
-  SafeAreaView,
-  TouchableOpacity,
-  Dimensions,
-} from 'react-native'
+import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native'
 import normalize from 'react-native-normalize'
 import { PaymentOptions } from './components'
 import { HeadTitle } from '../../components'
+import { cartStore } from '../../store'
+import { totalAmount } from '../../utils'
 
 const PaymentScreen = () => {
-  const { width } = Dimensions.get('window')
-  const SPACING = (width * 0.12) / 2
+  const products = cartStore((state) => state.cart.products)
 
   return (
-    <SafeAreaView className="flex-1 bg-white w-full">
-      <View className="w-full" style={{ paddingHorizontal: SPACING }}>
-        <HeadTitle title="How would you like to pay?" />
+    <SafeAreaView className="flex-1 bg-primary">
+      <View
+        className="w-full"
+        style={{ paddingHorizontal: normalize(22, 'width') }}
+      >
+        <HeadTitle title="Checkout" />
         <PaymentOptions />
         <View
-          className="flex flex-row items-center justify-between w-full bg-[#D9D9D9] rounded-lg"
+          className="flex-row items-center justify-between w-full"
           style={{
-            paddingLeft: normalize(11.63, 'width'),
-            paddingRight: normalize(12.69, 'width'),
-            height: normalize(55),
             marginBottom: normalize(44, 'height'),
           }}
         >
-          <View className="flex flex-row items-center justify-center gap-3">
-            <Text
-              className="text-[#131313] font-medium leading-6 tracking-tight"
-              style={{ fontSize: normalize(16) }}
-            >
-              Total
-            </Text>
-          </View>
           <Text
-            className="text-[#131313] font-medium leading-6 tracking-tight"
-            style={{ fontSize: normalize(16) }}
+            className="text-[#131313] font-normal leading-[1.31vh] tracking-tight"
+            style={{ fontSize: normalize(18), fontFamily: 'mrt-400' }}
           >
-            Price
+            Total
+          </Text>
+          <Text
+            className="text-primary font-medium leading-[1.31vh] tracking-tight"
+            style={{ fontSize: normalize(18), fontFamily: 'mrt-500' }}
+          >
+            {totalAmount(products)}
           </Text>
         </View>
         <TouchableOpacity
-          className="flex items-center justify-center w-full bg-[#D9D9D9] rounded-lg"
+          className="flex items-center justify-center w-full bg-[#809671] rounded-lg"
           style={{
-            height: normalize(55),
+            height: normalize(44),
           }}
         >
           <Text
-            className="text-black font-light leading-[1.31vh] tracking-tight"
-            style={{ fontSize: normalize(20) }}
+            className="text-white font-normal leading-[1.31vh] tracking-tight"
+            style={{ fontSize: normalize(18), fontFamily: 'mrt-400' }}
           >
-            Confirm Payment
+            Confirm order
           </Text>
         </TouchableOpacity>
       </View>
