@@ -6,12 +6,13 @@ const userStore = create(
   persist(
     (set, get) => ({
       userInfo: {},
+      accessToken: '',
       isLoading: false,
       addUserInfo: (user) => {
         set({ userInfo: user })
       },
-      getUserInfo: () => {
-        return get().userInfo
+      addUserToken: (token) => {
+        set({ accessToken: token })
       },
       removeUserInfo: () => {
         set({ userInfo: {} })

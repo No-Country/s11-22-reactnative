@@ -24,34 +24,38 @@ const COLORS = [
 const ProductInfo = ({ product }) => {
   return (
     <>
-      <View className="flex flex-row w-full items-center justify-between">
+      <View className="flex-row w-full items-center justify-between">
         <Text
-          style={{ fontSize: normalize(20) }}
+          style={{ fontSize: normalize(20), fontFamily: 'mrt-500' }}
           className="text-black font-medium leading-[1.31vh] tracking-tight"
         >
           {product?.name}
         </Text>
-        <View className="flex flex-row items-center justify-center gap-2">
-          <TouchableOpacity>
-            <Ionicons name="md-heart-outline" size={24} color="black" />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Ionicons name="md-share-social-outline" size={24} color="black" />
-          </TouchableOpacity>
-        </View>
+        <Text
+          className="text-primary font-normal leading-[1.31vh] tracking-tight"
+          style={{
+            fontSize: normalize(20),
+            fontFamily: 'mrt-400',
+          }}
+        >
+          ${product?.price}
+        </Text>
       </View>
       <Text
-        className="text-[#114949] font-medium leading-[1.31vh] tracking-tight"
+        className="text-black font-light leading-[1.31vh] tracking-tight text-left"
         style={{
-          fontSize: normalize(20),
-          marginTop: normalize(11, 'height'),
+          fontFamily: 'mrt-300',
+          fontSize: normalize(12),
+          marginTop: normalize(10, 'height'),
         }}
       >
-        ${product?.price}
+        KOSA is a minimalist furniture collection created by New York based
+        designer Ian Felton. KOSA – explores the juxtaposition of pre-Columbian
+        animism and the urban landscape we encounter today.
       </Text>
       <View
-        className="flex flex-row w-full items-center justify-start gap-2"
-        style={{ marginTop: normalize(11, 'height') }}
+        className="flex-row w-full items-center justify-start gap-2"
+        style={{ marginTop: normalize(16, 'height') }}
       >
         <Text
           className="text-black font-light leading-[1.31vh] tracking-tight"
@@ -65,10 +69,10 @@ const ProductInfo = ({ product }) => {
           data={product?.color}
           renderItem={({ item }) => (
             <TouchableOpacity
-              className="rounded-2xl  mr-3"
+              className="rounded-full  mr-3"
               style={{
-                width: normalize(44),
-                height: normalize(44),
+                width: normalize(22),
+                height: normalize(22),
                 backgroundColor: item,
               }}
             ></TouchableOpacity>

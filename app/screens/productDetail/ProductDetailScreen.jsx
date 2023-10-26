@@ -20,7 +20,6 @@ const ProductDetailScreen = ({ route, navigation }) => {
   const { itemId } = route.params
   const [product, setProduct] = useState({})
   const addProduct = cartStore((state) => state.addToCart)
-  const emptyCart = cartStore((state) => state.emptyCart)
   const { getProductById } = useProducts()
 
   useEffect(() => {
@@ -32,32 +31,50 @@ const ProductDetailScreen = ({ route, navigation }) => {
     <SafeAreaView className="flex-1 bg-[#E5E0D8] w-full">
       <View className="w-full" style={{ paddingHorizontal: SPACING }}>
         <View
-          className="w-full flex flex-row items-center justify-between"
+          className="w-full flex-row items-center justify-between"
           style={{
-            marginTop: normalize(22, 'height'),
+            marginTop: normalize(44, 'height'),
           }}
         >
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Ionicons name="ios-arrow-back-outline" size={30} color="black" />
+            <Ionicons name="chevron-back" size={30} color="#114949" />
           </TouchableOpacity>
-          <CartIcon
-            size={30}
-            handlePress={() => navigation.navigate('CartScreen')}
-            showQuantity={true}
-          />
+          <View className="flex-row items-center justify-center">
+            <TouchableOpacity
+              className="mr-2"
+              onPress={() => navigation.navigate('SearchScreen')}
+            >
+              <Ionicons name="search" size={27} color="#114949" />
+            </TouchableOpacity>
+            <CartIcon
+              size={30}
+              handlePress={() => navigation.navigate('CartScreen')}
+              showQuantity={true}
+            />
+          </View>
         </View>
         <View
           style={{
-            height: height / 2.5,
-            marginTop: normalize(11, 'height'),
+            height: (height / 1.9) * 0.7,
+            marginTop: normalize(33, 'height'),
           }}
         >
           <Image
             source={{
               uri: product[0]?.images[0],
             }}
-            className="object-cover w-full h-full"
+            className="object-cover w-full h-full rounded-lg"
           />
+          <TouchableOpacity className="absolute top-3 right-3 rounded-full bg-secondary w-7 h-7 items-center justify-center z-10">
+            <Ionicons name="md-heart-outline" size={22} color="#114949" />
+          </TouchableOpacity>
+          <TouchableOpacity className="absolute bottom-3 right-3 rounded-full bg-secondary w-7 h-7 items-center justify-center z-10">
+            <Ionicons
+              name="md-share-social-outline"
+              size={20}
+              color="#114949"
+            />
+          </TouchableOpacity>
         </View>
         <View
           className="w-full flex flex-col"
@@ -67,27 +84,42 @@ const ProductDetailScreen = ({ route, navigation }) => {
           <TouchableOpacity
             className="w-full h-11 rounded-lg bg-[#809671] flex items-center justify-center"
             style={{ marginTop: normalize(44, 'height') }}
-            onPress={() => emptyCart()}
           >
             <Text
-              className="text-white font-light leading-[1.31vh] tracking-tight"
-              style={{ fontSize: normalize(20) }}
+              className="text-white font-normal leading-[1.31vh] tracking-tight"
+              style={{ fontSize: normalize(18), fontFamily: 'mrt-400' }}
             >
               Buy now
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            className="w-full h-11 rounded-lg bg-[#CFD1C0] flex items-center justify-center"
+          <View
+            className="flex-row items-center justify-between w-full"
             style={{ marginTop: normalize(22, 'height') }}
-            onPress={() => addProduct(product[0])}
           >
-            <Text
-              className="text-[#607750] font-light leading-[1.31vh] tracking-tight"
-              style={{ fontSize: normalize(20) }}
+            <TouchableOpacity
+              className="h-11 rounded-lg bg-transparent flex items-center justify-center border border-[#809671]"
+              style={{ width: normalize(163) }}
             >
-              Add to cart
-            </Text>
-          </TouchableOpacity>
+              <Text
+                className="text-[#809671] font-normal leading-[1.31vh] tracking-tight"
+                style={{ fontSize: normalize(18), fontFamily: 'mrt-400' }}
+              >
+                Use AR
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              className="h-11 rounded-lg bg-secondary flex items-center justify-center"
+              style={{ width: normalize(163) }}
+              onPress={() => addProduct(product[0])}
+            >
+              <Text
+                className="text-[#607750] font-normal leading-[1.31vh] tracking-tight"
+                style={{ fontSize: normalize(18), fontFamily: 'mrt-400' }}
+              >
+                Add to cart
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </SafeAreaView>

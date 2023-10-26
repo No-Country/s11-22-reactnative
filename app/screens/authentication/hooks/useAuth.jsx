@@ -4,8 +4,7 @@ import { Alert } from 'react-native'
 
 import { userStore } from '../../../store'
 import { supabase } from '../../../supabase/initSupabase'
-import { loginAdapter } from '../../../adapters'
-import { useUser } from '@supabase/auth-helpers-react'
+import { clientAdapterData, loginAdapter } from '../../../adapters'
 
 const useAuth = () => {
   const navigation = useNavigation()
@@ -15,13 +14,14 @@ const useAuth = () => {
 
   const addUserInfo = userStore((state) => state.addUserInfo)
   const removeUser = userStore((state) => state.removeUserInfo)
-  const user = userStore((state) => state.userInfo)
+  const accessToken = userStore((state) => state.accessToken)
   const setIsLoading = userStore((state) => state.setIsLoading)
+  const addUserToken = userStore((state) => state.addUserToken)
 
   // If the user is logged in, redirect to the HomeScreen.
   useEffect(() => {
-    if (user?.accessToken) navigation.navigate('HomeScreen')
-  }, [user])
+    if (accessToken !== '') navigation.navigate('HomeScreen')
+  }, [accessToken])
 
   // Login function that calls the supabase auth signInWithPassword function.
   async function login() {
@@ -33,13 +33,15 @@ const useAuth = () => {
 
     if (error) {
       setIsLoading(false)
-      Alert.alert("Credentials don't match")
+      return Alert.alert("Credentials don't match")
     }
 
     // Adapt data to store it in the store.
     const adaptedUserData = loginAdapter(data)
-    const clientData = getClientById(adaptedUserData?.id)
+
+    const clientData = await getClientById(adaptedUserData?.id)
     addUserInfo(clientData)
+    addUserToken(adaptedUserData?.accessToken)
     navigation.navigate('HomeScreen')
     setIsLoading(false)
 
@@ -89,18 +91,17 @@ const useAuth = () => {
     navigation.navigate('LoginScreen')
   }
 
-  async function getClientById(id) {
-    const user = useUser()
-    const idFounded = user.filter((user) => user.id === id)
-
+  async function getClientById(userId) {
     const { data, error } = await supabase
       .from('clients')
-      .select()
-      .eq('user_id', idFounded)
-    console.log(data)
+      .select('*')
+      .eq('user_id', userId)
+
     if (error) return Alert.alert(error.message)
 
-    return data
+    const client = clientAdapterData(data[0])
+
+    return client
   }
 
   return {

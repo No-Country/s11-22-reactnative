@@ -5,12 +5,14 @@ import normalize from 'react-native-normalize'
 import Svg, { Path } from 'react-native-svg'
 import { HomeScreen, ProfileScreen } from '../screens'
 import MyDrawer from './DrawerNavigation'
+import { userStore } from '../store'
 
 const Tab = createBottomTabNavigator()
 
 const TabNavigation = () => {
   const { width } = Dimensions.get('window')
   const defaultColor = '#114949'
+  const user = userStore((state) => state.userInfo)
 
   return (
     <Tab.Navigator
@@ -111,7 +113,12 @@ const TabNavigation = () => {
           tabBarLabel: () => <Text style={styles.text}>Profile</Text>,
           tabBarIcon: () => (
             <Image
-              source={{ uri: 'https://picsum.photos/300/300' }}
+              source={{
+                uri:
+                  user?.imageProfile !== ''
+                    ? user?.imageProfile
+                    : 'https://picsum.photos/300/300',
+              }}
               style={styles.profileImage}
             />
           ),

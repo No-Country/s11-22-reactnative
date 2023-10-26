@@ -15,6 +15,7 @@ import { totalAmount } from '../../utils'
 
 const CartScreen = () => {
   const products = cartStore((state) => state.cart.products)
+  const emptyCart = cartStore((state) => state.emptyCart)
   const navigation = useNavigation()
   const { width } = Dimensions.get('window')
   const SPACING = (width * 0.12) / 2
@@ -22,14 +23,24 @@ const CartScreen = () => {
   return (
     <SafeAreaView className="flex-1 bg-[#E5E0D8] w-full">
       <View className="w-full" style={{ paddingHorizontal: SPACING }}>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
+        <View
+          className="flex-row items-center justify-between w-full"
           style={{
             marginTop: normalize(44, 'height'),
           }}
         >
-          <Ionicons name="ios-arrow-back-outline" size={30} color="black" />
-        </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Ionicons name="chevron-back" size={30} color="#114949" />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => emptyCart()}>
+            <Text
+              className="font-normal text-black"
+              style={{ fontFamily: 'mrt-400', fontSize: normalize(12) }}
+            >
+              Delete cart
+            </Text>
+          </TouchableOpacity>
+        </View>
         <ScrollView showsVerticalScrollIndicator={false} className="w-full">
           <CartItems />
           <View

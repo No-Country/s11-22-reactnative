@@ -11,13 +11,14 @@ module.exports = {
       backgroundColor: {
         primary: '#E5E0D8',
         secondary: '#CFD1C0',
+        tertiary: '#E8E3DC',
       },
       textColor: {
         primary: '#114949',
       },
     },
-    fontFamily: {
-      montserrat: ['Montserrat'],
+    borderColor: {
+      primary: '#CFD1C0',
     },
   },
   plugins: [],

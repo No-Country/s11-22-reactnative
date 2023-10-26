@@ -8,13 +8,11 @@ const CartItems = () => {
   const addToCart = cartStore((state) => state.addToCart)
   const removeProduct = cartStore((state) => state.removeProductFromCart)
 
-  console.log(products)
-
   return (
     <View className="w-full" style={{ marginTop: normalize(31, 'height') }}>
       {products?.map((item) => (
         <View
-          className="flex flex-row w-full items-start justify-start gap-5"
+          className="flex flex-row w-full items-start justify-start gap-5 border-primary rounded-lg bg-tertiary"
           style={{
             marginBottom: normalize(32, 'height'),
             height: normalize(121),
