@@ -1,43 +1,50 @@
-import { useState } from 'react'
-import { Text, SafeAreaView, Dimensions, View } from 'react-native'
-import { TabView, SceneMap, TabBar } from 'react-native-tab-view'
+import { Text, SafeAreaView, View, ScrollView, Image } from 'react-native'
+import normalize from 'react-native-normalize'
 import { HeadTitle } from '../../components'
-import { OrderHistory, PendingOrder } from './components'
-
-const renderScene = SceneMap({
-  pending_order: PendingOrder,
-  order_history: OrderHistory,
-})
+import { OrderDetail, OrderItem, OrderStatus } from './components'
 
 const OrderTracking = () => {
-  const [index, setIndex] = useState(0)
-  const [routes] = useState([
-    { key: 'pending_order', title: 'Pending order' },
-    { key: 'order_history', title: 'Order history' },
-  ])
-  const { width } = Dimensions.get('window')
-  const SPACING = (width * 0.12) / 2
-
   return (
-    <SafeAreaView className="flex-1 bg-white w-full">
-      <View className="w-full" style={{ paddingHorizontal: SPACING }}>
-        <HeadTitle title="Order tracking" />
-      </View>
-      <TabView
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        onIndexChange={setIndex}
-        renderTabBar={(props) => (
-          <TabBar
-            {...props}
-            style={{ backgroundColor: 'white' }}
-            renderLabel={({ route }) => (
-              <Text style={{ color: 'black' }}>{route.title}</Text>
-            )}
-            indicatorStyle={{ backgroundColor: '#000' }}
+    <SafeAreaView className="flex-1 bg-primary">
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View
+          className="w-full"
+          style={{ paddingHorizontal: normalize(22, 'width') }}
+        >
+          <HeadTitle title="Order tracking" />
+          <OrderStatus />
+          <OrderDetail />
+        </View>
+        <OrderItem />
+        <View
+          className="w-full"
+          style={{
+            paddingHorizontal: normalize(22, 'width'),
+            marginTop: normalize(6, 'height'),
+          }}
+        >
+          <Text
+            className="font-medium text-black text-left"
+            style={{
+              fontFamily: 'mrt-500',
+              fontSize: normalize(18),
+              marginBottom: normalize(11, 'height'),
+            }}
+          >
+            Shipping
+          </Text>
+          <Image
+            source={{
+              uri: 'https://bcggaudtahrsimkejfie.supabase.co/storage/v1/object/public/images/order-map/map_image.png?t=2023-10-27T00%3A00%3A12.205Z',
+            }}
+            className="w-full rounded-lg object-cover"
+            style={{
+              height: normalize(331),
+              marginBottom: normalize(16, 'height'),
+            }}
           />
-        )}
-      />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }

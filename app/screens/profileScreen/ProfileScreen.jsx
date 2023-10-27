@@ -45,10 +45,9 @@ const ProfileScreen = () => {
         >
           <Image
             source={{
-              uri:
-                user?.imageProfile !== ''
-                  ? user?.imageProfile
-                  : 'https://picsum.photos/300/300',
+              uri: user?.imageProfile
+                ? user?.imageProfile
+                : 'https://picsum.photos/300/300',
             }}
             className="h-11 w-11 rounded-full"
           />

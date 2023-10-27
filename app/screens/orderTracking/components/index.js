@@ -1,2 +1,3 @@
-export { default as OrderHistory } from './OrderHistory'
-export { default as PendingOrder } from './PendingOrder'
+export { default as OrderDetail } from './OrderDetail'
+export { default as OrderItem } from './OrderItem'
+export { default as OrderStatus } from './OrderStatus'

@@ -114,10 +114,9 @@ const TabNavigation = () => {
           tabBarIcon: () => (
             <Image
               source={{
-                uri:
-                  user?.imageProfile !== ''
-                    ? user?.imageProfile
-                    : 'https://picsum.photos/300/300',
+                uri: user?.imageProfile
+                  ? user?.imageProfile
+                  : 'https://picsum.photos/300/300',
               }}
               style={styles.profileImage}
             />
