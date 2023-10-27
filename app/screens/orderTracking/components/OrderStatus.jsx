@@ -1,7 +1,6 @@
 import { View, Text } from 'react-native'
 import normalize from 'react-native-normalize'
 import { Ionicons } from '@expo/vector-icons'
-import { ordersStore } from '../../../store'
 
 const ORDER_STATUS = [
   {
@@ -27,8 +26,6 @@ const ORDER_STATUS = [
 ]
 
 const OrderStatus = () => {
-  const orders = ordersStore((state) => state.orders)
-  console.log(orders)
   return (
     <View
       className="flex-row items-center justify-between w-full"
@@ -40,16 +37,16 @@ const OrderStatus = () => {
       <View className="w-full h-4 absolute top-0 left-0 items-center justify-center px-4">
         <View className="w-full border-t-[1px] border-[#114949B2]" />
       </View>
-      {orders?.map((order) => (
+      {ORDER_STATUS?.map((order) => (
         <View className="items-center justify-center" key={order?.id}>
           <View
             className={`w-4 h-4 rounded-full z-10 ${
-              order?.status === 'Packing'
+              order?.defaultStatus
                 ? 'bg-[#114949]'
                 : 'bg-primary border border-[#114949B2]'
             } items-center justify-center mb-2`}
           >
-            {order?.status === 'Packing' && (
+            {order?.defaultStatus && (
               <Ionicons name="checkmark" size={12} color="#E5E0D8" />
             )}
           </View>
