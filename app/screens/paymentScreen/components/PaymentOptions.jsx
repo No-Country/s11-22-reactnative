@@ -2,13 +2,19 @@ import { useState } from 'react'
 import { View, Text, Switch, Pressable, Dimensions } from 'react-native'
 import normalize from 'react-native-normalize'
 import { useNavigation } from '@react-navigation/native'
+import BouncyCheckbox from 'react-native-bouncy-checkbox'
 import { Ionicons } from '@expo/vector-icons'
+import { userStore } from '../../../store'
 
 const PaymentOptions = () => {
   const { height } = Dimensions.get('window')
   const [isEnabled, setIsEnabled] = useState(false)
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState)
+  const [masterCardEnable, setMasterCardEnable] = useState(false)
+  const masterCardToggleSwitch = () =>
+    setMasterCardEnable((previousState) => !previousState)
   const navigation = useNavigation()
+  const user = userStore((state) => state.userInfo)
 
   return (
     <>
@@ -39,22 +45,24 @@ const PaymentOptions = () => {
               className="text-[#121212] font-medium leading-[1.125vh] tracking-tight"
               style={{ fontSize: normalize(12), fontFamily: 'mrt-500' }}
             >
-              73 High Street
+              {user?.address}
             </Text>
             <Text
               className="text-[#121212] font-light leading-[0.94vh] tracking-tighter"
               style={{ fontSize: normalize(10), fontFamily: 'mrt-300' }}
             >
-              Birmingham, UK
+              {user?.country}
             </Text>
           </View>
         </View>
-        <Switch
-          trackColor={{ false: '#767577', true: '#CFD1C0' }}
-          thumbColor={isEnabled ? '#809671' : '#f4f3f4'}
-          ios_backgroundColor="#3e3e3e"
-          onValueChange={toggleSwitch}
-          value={isEnabled}
+        <BouncyCheckbox
+          size={22}
+          fillColor="#114949"
+          unfillColor="#E8E3DC"
+          iconStyle={{ borderColor: '#114949' }}
+          innerIconStyle={{ borderWidth: 1 }}
+          onPress={toggleSwitch}
+          isChecked={isEnabled}
         />
       </View>
       <View
@@ -77,7 +85,7 @@ const PaymentOptions = () => {
               className="text-[#131313] font-medium leading-[1.125vh] tracking-tight"
               style={{ fontSize: normalize(12), fontFamily: 'mrt-500' }}
             >
-              **** **** **** 7689
+              **** **** **** 2458
             </Text>
             <Text
               className="text-[#131313] font-light leading-[1.125vh] tracking-tight"
@@ -89,10 +97,10 @@ const PaymentOptions = () => {
         </View>
         <Switch
           trackColor={{ false: '#767577', true: '#34C759' }}
-          thumbColor={isEnabled ? '#f4f3f4' : '#f4f3f4'}
+          thumbColor={masterCardEnable ? '#f4f3f4' : '#f4f3f4'}
           ios_backgroundColor="#3e3e3e"
-          onValueChange={toggleSwitch}
-          value={isEnabled}
+          onValueChange={masterCardToggleSwitch}
+          value={masterCardEnable}
         />
       </View>
       <View
@@ -128,10 +136,10 @@ const PaymentOptions = () => {
         </View>
         <Switch
           trackColor={{ false: '#767577', true: '#34C759' }}
-          thumbColor={isEnabled ? '#f4f3f4' : '#f4f3f4'}
+          thumbColor={masterCardEnable ? '#f4f3f4' : '#f4f3f4'}
           ios_backgroundColor="#3e3e3e"
-          onValueChange={toggleSwitch}
-          value={isEnabled}
+          onValueChange={masterCardToggleSwitch}
+          value={!masterCardEnable}
         />
       </View>
       <Text

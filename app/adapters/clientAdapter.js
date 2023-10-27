@@ -7,6 +7,8 @@ export function clientAdapterData(client) {
     isActive: client?.is_active,
     imageProfile: client?.image_profile,
     createdAt: client?.created_at,
+    country: client?.country,
+    address: client?.address,
   }
 
   return adaptedClientData

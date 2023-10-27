@@ -15,7 +15,7 @@ const userStore = create(
         set({ accessToken: token })
       },
       removeUserInfo: () => {
-        set({ userInfo: {} })
+        set({ userInfo: {}, accessToken: '' })
       },
       setIsLoading: (isLoading) => {
         set({ isLoading })
