@@ -36,8 +36,12 @@ const cartStore = create(
       emptyCart: () => {
         set({ cart: { products: [] } })
       },
-      removeCart: () => {
-        cartStore.persist.clearStorage()
+      removeCartItem: (productId) => {
+        const prevProducts = get().cart.products
+        const updatedProducts = prevProducts.filter(
+          (product) => product.id !== productId,
+        )
+        set({ cart: { products: updatedProducts } })
       },
     }),
     {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import {
   View,
   Text,
@@ -15,21 +15,21 @@ import { CartIcon } from '../../components'
 import { useProducts } from '../../hooks'
 
 const ProductDetailScreen = ({ route, navigation }) => {
-  const { width, height } = Dimensions.get('window')
-  const SPACING = (width * 0.12) / 2
+  const { height } = Dimensions.get('window')
   const { itemId } = route.params
-  const [product, setProduct] = useState({})
   const addProduct = cartStore((state) => state.addToCart)
-  const { getProductById } = useProducts()
+  const { getProductById, product, handleBuyProduct } = useProducts()
 
   useEffect(() => {
-    const product = getProductById(itemId)
-    setProduct(product)
+    getProductById(itemId)
   }, [itemId])
 
   return (
-    <SafeAreaView className="flex-1 bg-[#E5E0D8] w-full">
-      <View className="w-full" style={{ paddingHorizontal: SPACING }}>
+    <SafeAreaView className="flex-1 bg-[#E5E0D8]">
+      <View
+        className="w-full"
+        style={{ paddingHorizontal: normalize(22, 'width') }}
+      >
         <View
           className="w-full flex-row items-center justify-between"
           style={{
@@ -84,6 +84,7 @@ const ProductDetailScreen = ({ route, navigation }) => {
           <TouchableOpacity
             className="w-full h-11 rounded-lg bg-[#809671] flex items-center justify-center"
             style={{ marginTop: normalize(44, 'height') }}
+            onPress={handleBuyProduct}
           >
             <Text
               className="text-white font-normal leading-[1.31vh] tracking-tight"

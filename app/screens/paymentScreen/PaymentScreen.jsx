@@ -1,14 +1,14 @@
-import { useState } from 'react'
 import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native'
 import normalize from 'react-native-normalize'
 import { PaymentOptions, SuccessfullyOrdered } from './components'
 import { HeadTitle } from '../../components'
 import { cartStore } from '../../store'
 import { totalAmount } from '../../utils'
+import { useOrders } from '../../hooks'
 
 const PaymentScreen = () => {
   const products = cartStore((state) => state.cart.products)
-  const [openModal, setOpenModal] = useState(false)
+  const { handleCreateOrder } = useOrders()
 
   return (
     <SafeAreaView className="flex-1 bg-primary">
@@ -34,7 +34,7 @@ const PaymentScreen = () => {
             className="text-primary font-medium leading-[1.31vh] tracking-tight"
             style={{ fontSize: normalize(18), fontFamily: 'mrt-500' }}
           >
-            {totalAmount(products)}
+            ${totalAmount(products)}
           </Text>
         </View>
         <TouchableOpacity
@@ -42,7 +42,7 @@ const PaymentScreen = () => {
           style={{
             height: normalize(44),
           }}
-          onPress={() => setOpenModal(!openModal)}
+          onPress={handleCreateOrder}
         >
           <Text
             className="text-white font-normal leading-[1.31vh] tracking-tight"
@@ -52,7 +52,7 @@ const PaymentScreen = () => {
           </Text>
         </TouchableOpacity>
       </View>
-      <SuccessfullyOrdered openModal={openModal} setOpenModal={setOpenModal} />
+      <SuccessfullyOrdered />
     </SafeAreaView>
   )
 }

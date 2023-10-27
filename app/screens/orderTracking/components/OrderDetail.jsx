@@ -1,7 +1,11 @@
 import { View, Text } from 'react-native'
 import normalize from 'react-native-normalize'
+import { ordersStore } from '../../../store'
+import { formatDate } from '../../../utils'
 
 const OrderDetail = () => {
+  const orders = ordersStore((state) => state.orders)
+
   return (
     <View
       className="w-full bg-tertiary rounded-lg border border-primary p-3 items-start justify-between"
@@ -14,7 +18,7 @@ const OrderDetail = () => {
           fontSize: normalize(16),
         }}
       >
-        Order #447345
+        {`Order #${orders[0]?.id.slice(0, 18)}...`}
       </Text>
       <Text
         className="text-left font-light text-black leading-[1.31vh] tracking-tight"
@@ -23,7 +27,7 @@ const OrderDetail = () => {
           fontSize: normalize(13),
         }}
       >
-        Order in October 2023
+        {`Order in ${formatDate(orders[0]?.createdAt)}`}
       </Text>
       <View className="flex-row items-center justify-between w-full">
         <Text
@@ -36,7 +40,7 @@ const OrderDetail = () => {
           className="text-left font-light text-black leading-[1.31vh] tracking-tight"
           style={{ fontFamily: 'mrt-300', fontSize: normalize(13) }}
         >
-          Pending
+          {orders[0]?.status}
         </Text>
       </View>
       <View className="flex-row items-center justify-between w-full">
@@ -50,7 +54,7 @@ const OrderDetail = () => {
           className="text-left font-light text-black leading-[1.31vh] tracking-tight"
           style={{ fontFamily: 'mrt-300', fontSize: normalize(13) }}
         >
-          2 items
+          {orders[0]?.products?.length} items
         </Text>
       </View>
       <View className="flex-row items-center justify-between w-full">
@@ -64,7 +68,7 @@ const OrderDetail = () => {
           className="text-left font-medium text-primary leading-[1.31vh] tracking-tight"
           style={{ fontFamily: 'mrt-500', fontSize: normalize(13) }}
         >
-          $690
+          ${orders[0]?.price}
         </Text>
       </View>
     </View>

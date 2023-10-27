@@ -1,10 +1,11 @@
 import { View, Text } from 'react-native'
 import normalize from 'react-native-normalize'
-import { cartStore } from '../../../store'
+import { ordersStore } from '../../../store'
 import Cards from '../../../components/cards/Cards'
 
 const OrderItem = () => {
-  const products = cartStore((state) => state.cart.products)
+  const orders = ordersStore((state) => state.orders)
+
   return (
     <>
       <View
@@ -21,7 +22,7 @@ const OrderItem = () => {
           Order item
         </Text>
       </View>
-      <Cards products={products} />
+      <Cards products={orders[0]?.products} />
     </>
   )
 }

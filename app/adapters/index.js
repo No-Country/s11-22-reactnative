@@ -1,4 +1,5 @@
 export * from './categoriesAdapter'
 export * from './clientAdapter'
 export * from './loginAdapter'
+export * from './ordersAdapter'
 export * from './productAdapter'

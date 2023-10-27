@@ -2,26 +2,33 @@ import { View, Text, Modal, TouchableOpacity } from 'react-native'
 import normalize from 'react-native-normalize'
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
-const SuccessfullyOrdered = ({ openModal, setOpenModal }) => {
+import { ordersStore } from '../../../store'
+const SuccessfullyOrdered = () => {
   const { navigate } = useNavigation()
+  const setSuccessfullyFetchOrder = ordersStore(
+    (state) => state.setSuccessfullyFetchOrder,
+  )
+  const successfullyFetchOrder = ordersStore(
+    (state) => state.successfullyFetchOrder,
+  )
 
   function navigateScreens(id) {
     if (id === 'HomeScreen') {
       navigate('HomeScreen')
-      setOpenModal(!openModal)
+      setSuccessfullyFetchOrder(false)
     } else if (id === 'OrderTracking') {
       navigate('OrderTracking')
-      setOpenModal(!openModal)
+      setSuccessfullyFetchOrder(false)
     }
   }
 
   return (
     <Modal
-      visible={openModal}
+      visible={successfullyFetchOrder}
       animationType="slide"
       transparent={true}
       onRequestClose={() => {
-        ;() => setOpenModal(!openModal)
+        ;() => setSuccessfullyFetchOrder(false)
       }}
     >
       <View

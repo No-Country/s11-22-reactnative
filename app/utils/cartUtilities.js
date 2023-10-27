@@ -7,7 +7,7 @@ export function totalAmount(products) {
     (acc, product) => acc + product.productQuantity * product.price,
     0,
   )
-  return `$${totalAmount} USD`
+  return totalAmount
 }
 
 /* This function takes in an array of products and calculates the total quantity of all the products combined. 

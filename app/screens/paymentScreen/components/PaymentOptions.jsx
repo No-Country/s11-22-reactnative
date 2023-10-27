@@ -8,7 +8,7 @@ import { userStore } from '../../../store'
 
 const PaymentOptions = () => {
   const { height } = Dimensions.get('window')
-  const [isEnabled, setIsEnabled] = useState(false)
+  const [isEnabled, setIsEnabled] = useState(true)
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState)
   const [masterCardEnable, setMasterCardEnable] = useState(false)
   const masterCardToggleSwitch = () =>

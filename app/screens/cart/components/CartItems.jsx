@@ -2,11 +2,13 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import normalize from 'react-native-normalize'
 import { Ionicons } from '@expo/vector-icons'
 import { cartStore } from '../../../store'
+import { useCart } from '../hooks'
 
 const CartItems = () => {
   const products = cartStore((state) => state.cart.products)
   const addToCart = cartStore((state) => state.addToCart)
   const removeProduct = cartStore((state) => state.removeProductFromCart)
+  const { removeProductFromCart } = useCart()
 
   return (
     <View className="w-full" style={{ marginTop: normalize(29, 'height') }}>
@@ -20,7 +22,10 @@ const CartItems = () => {
           }}
           key={item?.id}
         >
-          <TouchableOpacity className="absolute top-3 right-3">
+          <TouchableOpacity
+            className="absolute top-3 right-3"
+            onPress={() => removeProductFromCart(item?.id)}
+          >
             <Ionicons name="trash-outline" size={24} color="#114949" />
           </TouchableOpacity>
           <Image

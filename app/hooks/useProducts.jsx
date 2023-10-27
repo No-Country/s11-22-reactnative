@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Alert } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import Fuse from 'fuse.js'
-import { productStore } from '../store'
+import { cartStore, productStore } from '../store'
 import { supabase } from '../supabase/initSupabase'
 import { productAdapter } from '../adapters/productAdapter'
 
@@ -11,7 +11,9 @@ const useProducts = () => {
   const setSearchedProducts = productStore((state) => state.setSearchedProducts)
   const products = productStore((state) => state.products)
   const setIsLoading = productStore((state) => state.setIsLoading)
+  const addToCart = cartStore((state) => state.addToCart)
   const [search, setSearch] = useState('')
+  const [product, setProduct] = useState([])
   const { navigate } = useNavigation()
 
   async function handleFetchProducts() {
@@ -63,14 +65,21 @@ const useProducts = () => {
     return filteredProducts
   }
 
+  //filter product by id
   function getProductById(id) {
     const filteredProduct = products?.filter((product) => product?.id === id)
-    return filteredProduct
+    setProduct(filteredProduct)
   }
 
   useEffect(() => {
     if (products.length === 0) handleFetchProducts()
   }, [products])
+
+  // function to buy product and navigate to payment screen
+  function handleBuyProduct() {
+    addToCart(product[0])
+    navigate('PaymentScreen')
+  }
 
   return {
     getProductsByView,
@@ -78,6 +87,8 @@ const useProducts = () => {
     setSearch,
     getProductsByName,
     getProductById,
+    product,
+    handleBuyProduct,
   }
 }
 
