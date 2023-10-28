@@ -1,4 +1,4 @@
-import { TextInput, View, TouchableOpacity } from 'react-native'
+import { TextInput, View, TouchableOpacity, FlatList } from 'react-native'
 import normalize from 'react-native-normalize'
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
@@ -11,7 +11,10 @@ const SearchBox = ({ handlePress }) => {
 
   return (
     <View className="flex flex-row w-full items-center justify-between">
-      <TouchableOpacity onPress={() => navigation.goBack()}>
+      <TouchableOpacity
+        className="ml-[-10px] mr-2"
+        onPress={() => navigation.goBack()}
+      >
         <Ionicons name="chevron-back-sharp" size={38} color="#114949" />
       </TouchableOpacity>
       <View
@@ -36,6 +39,14 @@ const SearchBox = ({ handlePress }) => {
           onSubmitEditing={() => getProductsByName()}
         />
       </View>
+      <FlatList
+        data={searched}
+        renderItem={({ item }) => (
+          <View>
+            <Text>{item.name}</Text>
+          </View>
+        )}
+      />
       <CartIcon
         size={38}
         handlePress={() => navigation.navigate('CartScreen')}

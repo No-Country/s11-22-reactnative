@@ -1,25 +1,5 @@
 import { View, Text, TouchableOpacity, FlatList } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
 import normalize from 'react-native-normalize'
-
-const COLORS = [
-  {
-    id: 1,
-    color: '#FFC107',
-  },
-  {
-    id: 2,
-    color: '#2196F3',
-  },
-  {
-    id: 3,
-    color: '#9C27B0',
-  },
-  {
-    id: 4,
-    color: '#009688',
-  },
-]
 
 const ProductInfo = ({ product }) => {
   return (
@@ -49,9 +29,7 @@ const ProductInfo = ({ product }) => {
           marginTop: normalize(10, 'height'),
         }}
       >
-        KOSA is a minimalist furniture collection created by New York based
-        designer Ian Felton. KOSA – explores the juxtaposition of pre-Columbian
-        animism and the urban landscape we encounter today.
+        {product?.description}
       </Text>
       <View
         className="flex-row w-full items-center justify-start gap-2"

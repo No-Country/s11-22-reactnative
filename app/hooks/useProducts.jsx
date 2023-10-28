@@ -26,6 +26,7 @@ const useProducts = () => {
       Alert.alert(error)
     }
 
+    setSearched(data)
     addProducts(productAdapter(data))
     setIsLoading(false)
   }

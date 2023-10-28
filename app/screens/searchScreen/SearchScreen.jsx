@@ -2,12 +2,12 @@ import { View, SafeAreaView, ScrollView } from 'react-native'
 import normalize from 'react-native-normalize'
 import { RoomsCards } from './components'
 import { MiniCards, SearchBox, TitleContent } from '../../components'
-import { useCategory } from '../home/hook'
+import { useStyles } from '../home/hook'
 import { useProducts } from '../../hooks'
 import Cards from '../../components/cards/Cards'
 
 const SearchScreen = () => {
-  const { image } = useCategory() //ToDo: change for styles
+  const { image } = useStyles()
   const { getProductsByView } = useProducts()
 
   return (
