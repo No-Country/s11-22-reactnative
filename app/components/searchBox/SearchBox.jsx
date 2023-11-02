@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 import CartIcon from '../cartIcon/CartIcon'
 import { useProducts } from '../../hooks'
 
-const SearchBox = ({ handlePress }) => {
+const SearchBox = () => {
   const navigation = useNavigation()
   const { search, setSearch, getProductsByName } = useProducts()
 
@@ -39,14 +39,14 @@ const SearchBox = ({ handlePress }) => {
           onSubmitEditing={() => getProductsByName()}
         />
       </View>
-      <FlatList
+      {/* <FlatList
         data={searched}
         renderItem={({ item }) => (
           <View>
             <Text>{item.name}</Text>
           </View>
         )}
-      />
+      /> */}
       <CartIcon
         size={38}
         handlePress={() => navigation.navigate('CartScreen')}
